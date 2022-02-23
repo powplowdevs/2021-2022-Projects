@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<!--
+Ayoub
+On my honor as a student i have not giveing or recvived any 
+unothorrized any assitance as a student on this assignment 
+-->
+
+<html>
+
+    <head>
+
+        <title>Math Formulas</title>
+
+        <style>
+
+        </style>
+        
+        <script>
+
+            //Math formulas website
+            //A function for each of the following: area of a square, rectangle, triangle, and a circle
+            //A function for each of the following: perimeter of a square, rectangle, triangle and a circle
+            //A function for each of the following: volume of a cube, rectangular prism, cone, and sphere
+
+            class FindArea {
+
+                static squareA(arg){ //Length of one side 
+                    return Math.pow(arg,2)
+                }
+                
+                static rectangleA(arg1, arg2){ //W & L
+                    return arg1*arg2
+                }
+
+                static triangleA(arg1, arg2){ //Base & Height
+                    return (1/2)*arg1*arg2
+                }
+
+                static circleA(arg){ //Radius
+                    return Math.PI * (Math.pow(arg,2))
+                }
+
+            }
+
+            class FindPerimeter{
+
+                static squareP(arg){ //length of side
+                return arg*4
+                }
+    
+                static rectangleP(arg1,arg2){ //L & W
+                    return 2*(arg1+arg2)
+                }
+
+                static triangleP(arg1,arg2,arg3){ //length of all sides (side,base,side)
+                    return arg1+arg2+arg3
+                }
+
+                static circleP(arg){ //radius
+                    return 2 * Math.PI * arg
+                }
+
+            }
+
+            class FindVolume{
+
+                static cubev(arg){ //Edge length
+                    Math.pow(arg,3)
+                }
+
+                static rectangularPrismV(arg1,arg2,arg3){ //L & W & H
+                    return arg1*arg2*arg3
+                }
+
+                static coneV(arg1,arg2){ //height & radies
+                    return (1/3) * arg1 * Math.PI * Math.pow(arg2,2)
+                }
+
+                static sphere(arg){ //radius
+                    return (4/3)*Math.PI * Math.pow(arg, 3)
+                }
+
+            }
+            
+        </script>
+
+    </head>
+
+    <body>
+
+    </body>
+
+</html>

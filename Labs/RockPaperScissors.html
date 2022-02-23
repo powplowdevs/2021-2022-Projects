@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+
+<!--On my honor as a student, I have neither given nor received any unauthorized aid on this assignment.-->
+
+<head>
+
+    <title>RPS!</title>
+ 
+    <style>
+ 
+        body{
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfYgZNMWhtuEMJT-pz7ZZRmhGAS63wFfpiMaBWQgSJf0EQHuQMDKGS8w5GK02CEcIir6M:https://www.ppt-backgrounds.net/thumbs/blue-and-red-blurred-art-PPT.jpeg&usqp=CAU');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+ 
+        .settings{
+            float: left;
+        }
+ 
+        .Scores h2{
+            text-align: center;
+            display: inline-block;
+            margin-right: 50px;
+            margin-bottom: 100px;
+        }
+ 
+        .loader {
+            display: inline-block;
+            margin: 100px;
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            width: 120px;
+            height: 120px;
+            -webkit-animation: spin 2s linear infinite; /* Safari */
+            animation: spin 2s linear infinite;
+        }
+       
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+ 
+        .HUMAN{
+            text-align: center;
+            display: inline-block;
+            margin-right: 50px;
+        }
+ 
+        .AI{
+            text-align: center;
+            display: inline-block;
+            margin-left: 50px;
+        }
+ 
+        #rock{
+            display: inline-block;
+        }
+ 
+        #paper{
+            display: inline-block;
+        }
+ 
+        #scissors{
+            display: inline-block;
+        }
+ 
+        #rockAI{
+            display: none;
+        }
+ 
+        #paperAI{
+            display: none;
+        }
+ 
+        #scissorsAI{
+            display: none;
+        }
+ 
+    </style>
+ 
+    <script>
+ 
+        let Rounds = parseInt(prompt("How many round do you want to play?"));
+        let picked = false;
+        let w = 0;
+        let t = 0;
+        let l = 0;
+        let roundsrev = 1;
+        let number = Math.floor(Math.random() * 3);
+        let op = 0;
+        let outcome = "";
+        let gameend = false;
+        let auto = true;
+        let wait = 3000;
+        let index = false;
+        let flip = false;
+        const plays = ["rock", "paper", "scissors"];
+
+
+        function pickRock(){
+
+            op = 0;
+            picked = true;
+            document.getElementById("paper").style.display = 'none';
+            document.getElementById("scissors").style.display = 'none';
+            play()
+           
+        }
+ 
+
+        function pickPaper(){
+
+            op = 1;
+            picked = true;
+            document.getElementById("rock").style.display = 'none';
+            document.getElementById("scissors").style.display = 'none';
+            play()
+ 
+        }
+ 
+
+        function pickScissors(){
+
+            op = 2;
+            picked = true;
+            document.getElementById("paper").style.display = 'none';
+            document.getElementById("rock").style.display = 'none';
+            play()
+           
+        }
+ 
+
+        function reset(){
+
+            document.getElementById("winimg").style.display = "none";
+            document.getElementById("tieimg").style.display = "none";
+            document.getElementById("lossimg").style.display = "none";
+            document.getElementById("paper").style.display = 'inline-block';
+            document.getElementById("rock").style.display = 'inline-block';
+            document.getElementById("scissors").style.display = 'inline-block';
+            document.getElementById("rockAI").style.display = "none";
+            document.getElementById("paperAI").style.display = "none";
+            document.getElementById("scissorsAI").style.display = "none";
+            document.getElementsByClassName("loader")[0].style.display = "inline-block";
+            document.getElementById("currentplayer").innerHTML = "Your move, pick a move";
+           
+        }
+
+
+        function resetgame(){
+
+            w = 0
+            l = 0
+            t = 0
+            reset()
+            document.getElementById("ties").innerHTML = ("Ties: 0");
+            document.getElementById("losses").innerHTML = ("Losses: 0");
+            document.getElementById("wins").innerHTML = ("Wins: 0")
+            roundsrev = 1
+ 
+        }
+       
+
+        function settingsHandle(){
+
+            if (flip){
+                document.getElementById("setTime").style.display = "none"
+                document.getElementById("setAuto").style.display = "none"
+                document.getElementById("rsgp").style.display = "none"
+                flip = false
+            }
+            
+            else{
+                document.getElementById("setTime").style.display = "block"
+                document.getElementById("setAuto").style.display = "block"
+                document.getElementById("rsgp").style.display = "block"
+                flip = true
+            }
+            
+        }
+
+
+        function changeTime(){
+
+            let newtime = parseInt(prompt("Ener the new time in seconds"))
+            newtime = newtime*1000
+            wait = newtime
+            alert("we will now wait " + (newtime/1000) + " seconds before runing the next round")
+            document.getElementById("setTime").style.display = "none"
+            document.getElementById("setAuto").style.display = "none"
+            document.getElementById("rsgp").style.display = "none"
+        }
+
+
+        function toggleAuto(){
+
+            if (auto){
+                auto = false
+                alert("Rounds have to be manualy run")
+            }
+
+            else{
+                auto = true
+                alert("Rounds will now be auto ran")
+            }
+
+            document.getElementById("setTime").style.display = "none"
+            document.getElementById("setAuto").style.display = "none"
+            document.getElementById("rsgp").style.display = "none"
+        }
+
+
+        function resetpage(){
+            location.reload();
+        }
+
+        //GAME LOOP    
+        async function play(){
+ 
+            //Ask for rounds to play only of new game is starting
+            if (gameend){
+                gameend = false
+                reset()
+                resetgame()
+                Rounds = parseInt(prompt("How many round do you want to play?"));
+                roundsrev = 1
+            }
+ 
+            if (auto == true){
+                //make start button go away when game starts
+                document.getElementById("mainButton").style.display = "none";
+            }
+ 
+            else{
+
+                document.getElementById("mainButton").innerHTML = "next round"
+                console.log("next round", index)
+                if (index == true){
+                    reset()
+                    index = false
+                }
+            }
+ 
+            //update round UI
+            document.getElementById("currentRound").innerHTML = ("Round: " + roundsrev)
+ 
+            if (picked == false){
+                window.setTimeout(picked, 5000);
+                document.getElementById("currentplayer").innerHTML = "Your move, pick a move";  
+            }
+ 
+            else{  
+
+                //vars
+                let hmove = plays[op];
+                number = Math.floor(Math.random() * 3);
+                let aimove = plays[number];
+ 
+                //give user the impression that ai is thinking
+                document.getElementById("currentplayer").innerHTML = "AI is thinking...";
+                await new Promise(r => setTimeout(r, wait));
+ 
+                //show user ais move
+                switch(aimove){
+                    case "rock" : document.getElementById("rockAI").style.display = "inline-block";
+                        break;
+                    case "paper" : document.getElementById("paperAI").style.display = "inline-block";
+                        break;
+                    case "scissors" : document.getElementById("scissorsAI").style.display = "inline-block";
+                        break;
+                }
+               
+                //LOGIC FOR GAME
+                if (hmove == aimove){
+                    t += 1;
+                    document.getElementById("ties").innerHTML = ("Ties: " + t);
+                    outcome = "t";
+                    Rounds -= 1
+                }
+ 
+                else if (op == 0 && number == 1 || op == 1 && number == 2 || op == 2 && number == 0){
+                    l += 1;
+                    document.getElementById("losses").innerHTML = ("Losses: " + l);
+                    outcome = "l";
+                    Rounds -= 1
+                }
+ 
+                else{
+                    w += 1
+                    document.getElementById("wins").innerHTML = ("Wins: " + w);
+                    outcome = "w";
+                    Rounds -= 1
+                }
+                //LOGIC FOR GAME
+ 
+                //remove loader UI so it can be relpaced with the win loss and tie imgs
+                document.getElementsByClassName("loader")[0].style.display = "none";
+ 
+                //update imgs to show user outcome of the round
+                switch(outcome){
+                    case "w":
+                        document.getElementById("winimg").style.display = "inline-block";
+                        document.getElementById("currentplayer").innerHTML = "This round is a win!";
+                        break;
+                    case "t":
+                        document.getElementById("tieimg").style.display = "inline-block";
+                        document.getElementById("currentplayer").innerHTML = "This round is a tie!";
+                        break;
+                    case "l":
+                        document.getElementById("lossimg").style.display = "inline-block";
+                        document.getElementById("currentplayer").innerHTML = "This round is a loss!";
+                        break;
+ 
+                }
+ 
+                //update rounds
+                roundsrev += 1
+                document.getElementById("currentRound").innerHTML = ("Round: " + roundsrev)
+                //reset picked bool
+                picked = false;
+                //let ai know if round ended
+                index = true
+ 
+                //keep game going
+                if (Rounds > 0){
+                    //update round UI
+                    document.getElementById("currentRound").innerHTML = ("Round: " + roundsrev)
+                    await new Promise(r => setTimeout(r, wait));
+                   
+                    if (auto){
+                        reset()
+                    }
+                   
+                    else{
+                        index = true
+                    }
+                }
+               
+            }
+           
+            //once game is ended show user outcome
+            if (Rounds == 0){
+                //SET WINNER
+                gameend = true
+                if (w>l && w>t && w!=l){
+                    reset()
+                    w=0
+                    l=0
+                    t=0
+                    document.getElementsByClassName("loader")[0].style.display = "none";
+                    document.getElementById("winimg").style.display = "inline-block";
+                    document.getElementById("currentplayer").innerHTML = "You won the game!";
+                    document.getElementById("currentRound").innerHTML = "GAME OVER";
+                    document.getElementById("mainButton").style.display = "inline-block";
+                    document.getElementById("mainButton").innerHTML = "start!"
+                    await new Promise(r => setTimeout(r, wait));
+                   
+                }
+ 
+                else if (w<l && l>t && w!=l){
+                    reset()
+                    w=0
+                    l=0
+                    t=0
+                    document.getElementsByClassName("loader")[0].style.display = "none";
+                    document.getElementById("lossimg").style.display = "inline-block";
+                    document.getElementById("currentplayer").innerHTML = "You lost the game!";
+                    document.getElementById("currentRound").innerHTML = "GAME OVER";
+                    document.getElementById("mainButton").style.display = "inline-block";
+                    document.getElementById("mainButton").innerHTML = "start!"
+                    await new Promise(r => setTimeout(r, wait));
+                 
+                }
+ 
+                else{
+                    reset()
+                    w=0
+                    l=0
+                    t=0
+                    document.getElementsByClassName("loader")[0].style.display = "none";
+                    document.getElementById("tieimg").style.display = "inline-block";
+                    document.getElementById("currentplayer").innerHTML = "This game is a tie!";
+                    document.getElementById("currentRound").innerHTML = "GAME OVER";
+                    document.getElementById("mainButton").style.display = "inline-block";
+                    document.getElementById("mainButton").innerHTML = "start!"
+                    await new Promise(r => setTimeout(r, wait));
+                   
+                }
+               
+                await new Promise(r => setTimeout(r, wait));
+                //when game just got done reset as to not mess with new game
+                resetgame()
+     
+            }
+        }
+ 
+        
+    </script>
+ 
+</head>
+
+<body>
+ 
+    <body>
+        
+        <!--GAME UI-->
+        <div style="text-align: center;">
+ 
+            <!--SETTINGS-->
+            <div class="settings">
+
+                <a onclick="settingsHandle()">
+                    <img id="settingsIMG" width="50" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Windows_Settings_app_icon.png/768px-Windows_Settings_app_icon.png" alt="setting">
+                </a>
+
+                <button style="display: none;" onclick="changeTime()" id="setTime">Set time between round</button>
+                <button style="display: none;" onclick="toggleAuto()" id="setAuto">Auto play next round?</button>
+                <button style="display: none;" onclick="resetpage()" id="rsgp">RESET</button>
+                
+            </div>
+ 
+            <!--SCORES-->
+            <div class="Scores">
+                <h2 id="wins">Wins: 0</h2>
+                <h2 id="ties">Ties: 0</h2>
+                <h2 id="losses">Losses: 0</h2>
+            </div>
+ 
+            <!--ROUND-->
+            <div>
+                <h2 id="currentRound">Round: 1</h2>
+            </div>
+ 
+            <!--STATUS TEXT-->
+            <div>
+                <h2 id="currentplayer">Start the game</h2>
+            </div>
+ 
+            <!--HUMAN-->
+            <div class="HUMAN">
+               
+                <!--ROCK-->
+                <a onclick="pickRock()">
+                    <img id="rock" width="100px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS04UooBY58STbjJZc4PGgKo5uYnKvFYf-38K50fg7JMfSxaQGKKdVYy_WP6Oi4xUiuLmM:https://pyxis.nymag.com/v1/imgs/eac/f54/f827413853feff75a15a6efa3fbe41edd5-11-Dwayne-Johnson-Young-Rock.rsquare.w1200.jpg&usqp=CAU" alt="rock">
+                </a>
+                <!--PAPER-->
+                <a onclick="pickPaper()">
+                    <img id="paper" width="100px" src="https://mediaserver.goepson.com/ImConvServlet/imconv/d9b5b9473246befb23d1b09e34cc783711e83ba6/515Wx515H?use=productpictures&assetDescr=Paper_Icon_690x460" alt="paper">
+                </a>
+                <!--SCISSORS-->
+                <a onclick="pickScissors()">
+                    <img id="scissors" width="100px" src="https://i.ytimg.com/vi/jo3GhSwH8iM/sddefault.jpg" alt="scissors">
+                </a>
+ 
+                <h2>You:</h2>
+                <img id="HUMANIMG" width="250px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjcV9dzXaOjNsfMc-GPxEdjWcAOFtV8x_gLn2KqpXN6pGgOa796SZCdyOjoysRYCPw1-s:https://www.iconspng.com/uploads/-abstract-user-icon-1/-abstract-user-icon-1.png&usqp=CAU" alt="You">
+       
+            </div>
+ 
+            <!--lOADING BAR-->
+            <div class="loader">
+            </div>
+ 
+            <!--WIN/LOSS/TIE-->
+           
+            <img style="display: none;" width="150px" id="winimg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRrLZ1dYpDaWpFxjCmQhTjoMEczcB65Fps1g:fowmedia.com/wp-content/uploads/2014/08/win-1024x1024.jpg&usqp=CAU">
+            <img style="display: none;" width="150px" id="tieimg" src="https://media.istockphoto.com/vectors/tie-icon-logo-vector-design-vector-id1186237183?k=20&m=1186237183&s=612x612&w=0&h=MiHnwu7gPu0raudz7cOe7xa645KAaUu0K6mq6sF2TFM=">
+            <img style="display: none;" width="150px"id="lossimg" src="https://thumbs.dreamstime.com/b/d-sad-man-word-loss-rendering-frustrated-upset-depressed-sitting-inside-white-people-character-53453908.jpg">
+       
+ 
+            <!--AI-->
+            <div class="AI">
+ 
+                <!--ROCK-->
+                <img id="rockAI" width="100px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS04UooBY58STbjJZc4PGgKo5uYnKvFYf-38K50fg7JMfSxaQGKKdVYy_WP6Oi4xUiuLmM:https://pyxis.nymag.com/v1/imgs/eac/f54/f827413853feff75a15a6efa3fbe41edd5-11-Dwayne-Johnson-Young-Rock.rsquare.w1200.jpg&usqp=CAU" alt="rock">
+                <!--PAPER-->
+                <img id="paperAI" width="100px" src="https://mediaserver.goepson.com/ImConvServlet/imconv/d9b5b9473246befb23d1b09e34cc783711e83ba6/515Wx515H?use=productpictures&assetDescr=Paper_Icon_690x460" alt="paper">
+                <!--SCISSORS-->
+                <img id="scissorsAI" width="100px" src="https://i.ytimg.com/vi/jo3GhSwH8iM/sddefault.jpg" alt="scissors">
+ 
+                <h2>AI:</h2>
+                <img id="AIIMG" width="250px" src="https://i.dlpng.com/static/png/5947133-icon-artificial-intelligence-201177-free-icons-library-artificial-intelligence-icon-1600_1600_preview.png" alt="AI">
+ 
+            </div>
+ 
+            <!--UI-->
+            <div class="UI">
+ 
+                <button style="display: inline-block;" id="mainButton" onclick="play()" >Start!</button>
+ 
+            </div>
+ 
+        </div>
+ 
+    </body>
+ 
+</body>

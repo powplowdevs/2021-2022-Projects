@@ -1,0 +1,46 @@
+<!-- 
+    Create an HTML file and call it FortuneTeller.html.  Add the basic structure and insert the <script> element into the <body> of the page.
+    Inside of the <script>, write a comment to explain what the code you are creating will be doing.
+    Create a variable, question, to capture and hold the question the user asked from the browser.
+    Create a variable, length, for the length of the question the user asked.
+    Create a variable, random, to hold a random number that is generated using the length of the question.  
+    Create a variable, numberOfFortunes, to hold the number of fortune response that you have prepared
+    Use modulus and numberOfFortunes to keep random within the range of fortunes that you created. Reassign the new value to random.
+    Create a control structure that picks between 5 or more prepared responses to send back to the user on the browser.
+-->
+
+
+<!--Ayoub
+On my honor as a student i have not giveing or recvived any 
+unothorrized any assitance as a student on this assignment 
+-->
+
+<!DOCTYPE html>
+<!--On my honor as a student, I have neither given nor received any unauthorized aid on this assignment.-->
+
+<head>
+
+    <!--Page title-->
+    <title>Lab11 AM</title>
+    
+    <!--JS-->
+    <script>
+        
+        //a fortuneTeller website
+
+        answers = ["no way!", "maybe", "hmm, I cant say", "yes", "most definitely"]
+
+        const question = prompt("What do you seek?");
+        const questionlen = question.length;
+        let random = Math.floor(Math.random() * questionlen);
+        const numberOfFortunes = answers.length;
+        random = random % numberOfFortunes
+
+        answer = alert(answers[random])
+
+    </script>
+
+</head>
+
+<body>
+</body>

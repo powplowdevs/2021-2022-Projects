@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Ball control</title>
+
+    <style>
+        body{
+            background-color: rebeccapurple;
+
+        }
+        #canvas{
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas" width="400" height="400"></canvas>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+    <script>
+        let $canvas = $("#canvas")
+        let ctx = $canvas[0].getContext('2d')
+        ctx.fillStyle = 'red';
+
+        const WIDTH = 400
+        const HEIGHT = 400
+        const amt = 10
+
+        let balls = []
+        let colors = ["red","orange","yellow","blue","purple",]
+
+        class Ball{
+            constructor(x, y, xs, ys, index) {
+                this.x = x;
+                this.y = y;
+                this.xs = xs;
+                this.ys = ys;
+                this.index = index;
+            }
+
+            editVel(code){
+                if (code == "ArrowUp"){
+                    this.ys = -3
+                }
+                else if (code == "ArrowDown"){
+                    this.ys = +3
+                }
+                else if (code == "ArrowLeft"){
+                    this.xs = -3
+                }
+                else if (code == "ArrowRight"){
+                    this.xs = +3
+                }
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 5, 0, 2*Math.PI);
+                ctx.fill();
+            }
+
+            move(){
+                this.x += this.xs
+                this.y += this.ys
+            }
+            
+            checkCol(){
+                if (this.x<0 || this.x>390){
+                    this.xs = -this.xs
+                }
+                if (this.y<0 || this.y>390){
+                    this.ys = -this.ys
+                }
+            }
+
+        }
+
+        for (let index = 0; index < amt; index++) {
+            balls.push(new Ball(Math.floor(Math.random() * 300),Math.floor(Math.random() * 300),Math.floor(Math.random() * 10) + 1,Math.floor(Math.random() * 10) + 1, index))
+        }
+
+        console.log(balls)
+        async function main(){
+                if (amt == 1){
+                    $("body").keydown(function(event) {
+                        ball.editVel(event.code)
+                    });
+                }
+
+                ctx.clearRect(0, 0, WIDTH, HEIGHT);
+
+                for (let index = 0, colorLoop = 0; index < amt; index++) {
+                    ball = balls[index]
+          
+                    ctx.fillStyle = colors[colorLoop];
+                    colorLoop++
+                    if (colorLoop > colors.length){
+                        colorLoop = 0
+                    }
+
+                    ball.move()
+                    ball.draw()
+                    ball.checkCol()
+                }
+                
+                requestAnimationFrame(main)
+                
+        }
+
+        main()
+
+    </script>
+</body>

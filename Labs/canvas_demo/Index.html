@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Intagrated website</title>
+    <link href="Main.css" rel="stylesheet" type="text/css">
+
+    <style>
+        body{
+            background-color: rebeccapurple;
+
+        }
+        #canvas{
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas" width="300" height="300"></canvas>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+    <script>
+        let y = 10
+        let HEIGHT = 250
+        let WITDH = 300
+        let SPEED = 1
+        let GRAV = 9.81
+        let MAXB = 0.7
+
+        let $canvas = $("#canvas")
+        let ctx = $canvas[0].getContext('2d')
+        ctx.fillStyle = 'red';
+
+
+        //what should be in a class
+        let vel = 1
+        let mass = 10
+
+        //others
+        let bounced = false
+        let max = HEIGHT
+
+        ctx.fillRect(250, y, 20, 50);
+        
+
+        function calc_grav(vel,mass){
+            f = (vel*mass)/2
+            if (f > 0.05){
+                return f
+            }
+            return 0
+            
+        }
+
+        rectangles();
+
+    
+
+        async function rectangles() {
+            ctx.clearRect(250, y, 20, 50);
+            
+            if (y>max){
+                bounced = !bounced
+                max = (MAXB/HEIGHT)*100 
+                console.log(max,y)
+                // f = calc_grav(vel, mass)
+                // vel = vel/2
+                // console.log(vel,y)
+                // for (let index = 0; index < f; index++) {
+                //     y -= f/f + vel
+                //     ctx.fillRect(250, y, 20, 50);
+                //     await new Promise(r => setTimeout(r, 10));
+                //     ctx.clearRect(250, y, 20, 50);
+                //     vel -= 0.01
+                    
+                // }
+                
+                // console.log(f)
+            }
+            else{
+                if (bounced == false){
+                    vel += 0.01
+                    y += calc_grav(vel,mass)
+                }
+                else{
+                    vel += 0.01
+                    console.log(calc_grav(vel,mass))
+                    y -= calc_grav(vel,mass) 
+                }
+            }
+
+            ctx.fillRect(250, y, 20, 50);
+            await new Promise(r => setTimeout(r, 20));
+            rectangles();
+        }
+
+
+
+    </script>
+</body>

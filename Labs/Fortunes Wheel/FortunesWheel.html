@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fortune's Wheel</title>
+        <link rel="stylesheet" href="FortuneStyle.css" type='text/css'>
+    </head>
+    <body>
+        <div class='container'>
+            <div id='title'>
+                <p>Fortune's Wheel</p>
+            </div>
+            <div id='puzzle'>
+            </div>
+            <div id='used'>
+                <p>Used Letters</p>
+                <div id='letters'></div>
+            </div>
+            <div id='spin'>
+                <button onclick="spin()">Spin</button>
+            </div>
+            <div id='value'>
+                <p>letter value</p>
+                <div id='spinPts'>0</div>
+            </div>
+            <div id='input'>
+                <p>Enter a letter</p>
+                <input class='submit' type="text" size='3' maxlength="1" id='userInput' autofocus></input>
+                <button class='submit' onclick="getInput(document.getElementById('userInput').value)">GO</button>
+            </div>
+            <div id='score'>
+                <p>SCORE</p>
+                <div id='totalPts'>0</div>
+            </div>
+            <div id='new'>
+                <button onclick="play()">New Puzzle</button>
+            </div>
+        </div>
+        <script src='FortuneScript.js'></script>
+    </body>
+</html>

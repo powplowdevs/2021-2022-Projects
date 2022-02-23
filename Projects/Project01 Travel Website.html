@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+
+<!--
+Ayoub
+On my honor as a student i have not giveing or recvived any 
+unothorrized any assitance as a student on this assignment 
+-->
+
+<html>
+
+    <head>
+
+        <title>Travel to turkey</title>
+
+        <style>
+
+            .ul_2{
+                float: right;
+            }
+
+            h2{
+                display: inline;
+            }
+
+            .img{
+                
+                float: right;
+                clear: right;
+                margin-bottom: 123px;
+                display: block;
+            }
+
+            .img_icon{
+                display: inline; 
+                float: right;
+            }
+
+            .NAVBAR li{
+                display: inline;
+                background-color: black;
+                color: gray;
+                margin: 0px;
+                float: left;
+            }
+
+            .NAVBAR li:hover{
+                background-color: darkgray;
+            }
+
+            .NAVBAR{
+                list-style-type: none;
+                margin: 0px;
+                padding: 0px;
+            }
+
+            li a {
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                color:white;
+                
+            }
+
+            a:hover {
+                color:whitesmoke;
+                text-decoration: none;
+            }
+
+            a:active{
+                color: gray;
+                text-decoration: none;
+            }
+
+            a{
+                color: gray;
+            }
+            
+            .center {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                
+            }
+
+            /*code from https://stackoverflow.com/questions/16751241/how-to-have-slidetoggle-for-multiple-items-on-one-page/16751811*/
+
+            .flip{
+                
+                margin-left: auto;
+                margin-right: auto;
+                width: 40%;
+                text-align: left;
+                font-family: 'Times New Roman', Times, serif;
+            }
+
+            .panel,.flip
+            {
+                padding:5px;
+            }
+            
+            .panel{
+                padding:50px;
+                display:none;
+            }
+
+        </style>     
+
+        <!--CODE FROM https://stackoverflow.com/questions/16751241/how-to-have-slidetoggle-for-multiple-items-on-one-page/16751811-->
+
+        <!--tbh the code is much diffrent now but this site was where i found my first try at a way to get the slideing effect with js/jq-->
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <script>
+
+            $(document).ready(function(){
+
+                $("#flip1").click(function(){
+                    $("#panel").slideToggle();
+                    $("#panel5").slideUp();
+                    $("#panel2").slideUp();
+                    $("#panel3").slideUp();
+                    $("#panel4").slideUp();
+                });
+            
+                $("#flip2").click(function(){
+                    $("#panel2").slideToggle();
+                    $("#panel5").slideUp();
+                    $("#panel").slideUp();
+                    $("#panel3").slideUp();
+                    $("#panel4").slideUp();
+                });
+
+                $("#flip3").click(function(){
+                    $("#panel3").slideToggle();
+                    $("#panel5").slideUp();
+                    $("#panel2").slideUp();
+                    $("#panel").slideUp();
+                    $("#panel4").slideUp();
+                });
+
+                $("#flip4").click(function(){
+                    $("#panel4").slideToggle();
+                    $("#panel5").slideUp();
+                    $("#panel2").slideUp();
+                    $("#panel3").slideUp();
+                    $("#panel").slideUp();
+                });
+
+                $("#flip5").click(function(){
+                    $("#panel5").slideDown();
+                    $("#panel").slideUp();
+                    $("#panel2").slideUp();
+                    $("#panel3").slideUp();
+                    $("#panel4").slideUp();
+                });
+
+                
+                $("flip11").click(function(){
+
+                    $("#panel5").slideUp()
+
+                });
+
+                //NAV BAR JS
+
+                $("#flip6").click(function(){
+                    $("#panel5").slideToggle();
+                    $("#panel").slideUp();
+                    $("#panel2").slideUp();
+                    $("#panel3").slideUp();
+                    $("#panel4").slideUp();
+                    window.scroll(0,5000)
+                });
+
+                $("#flip7").click(function(){
+                    $("#panel").slideToggle();
+                    $("#panel5").slideUp();
+                    $("#panel2").slideUp();
+                    $("#panel3").slideUp();
+                    $("#panel4").slideUp();
+                    window.scroll(0,5000)
+                });
+
+                $("#flip8").click(function(){
+                    $("#panel2").slideToggle();
+                    $("#panel").slideUp();
+                    $("#panel5").slideUp();
+                    $("#panel3").slideUp();
+                    $("#panel4").slideUp();
+                    window.scroll(0,5000)
+                });
+
+                $("#flip9").click(function(){
+                    $("#panel3").slideToggle();
+                    $("#panel").slideUp();
+                    $("#panel2").slideUp();
+                    $("#panel5").slideUp();
+                    $("#panel4").slideUp();
+                    window.scroll(0,5000)
+                });
+
+                $("#flip10").click(function(){
+                    $("#panel4").slideToggle();
+                    $("#panel").slideUp();
+                    $("#panel2").slideUp();
+                    $("#panel3").slideUp();
+                    $("#panel5").slideUp();
+                    window.scroll(0,5000)
+                });
+            
+            });
+    
+        </script>
+        
+    </head>
+
+    <body style="background-color: silver;">
+
+        <!--PAGE HEADDER AND NAV-->
+        <div class="center">
+
+            <h1 style="text-align: center;">Travel to Turkey</h1>
+
+            <!--NAVAGATION-->
+            <ul class="NAVBAR" style="margin: auto; width: 500px;">
+
+                <li id="flip7"><a>Destinations</a></li>
+
+                <li id="flip8"><a>Culture</a></li>
+
+                <li id="flip9"><a>Food</a></li>
+
+                <li id="flip10"><a>What not to do</a></li>
+
+                <li id="flip6"><a>Signup</a></li>
+
+            </ul>
+
+        </div>
+
+        <br>
+
+        <hr width="900px">
+
+        <!--PAGE INTRO-->
+     
+        <div class="center" style="width: 800px;">
+
+            <h1 style="padding-left: 20px; font-size: 50px; text-align: center;"> Welcome to turkey!</h1>
+            <img class="center" width="500px" src="https://facts.net/wp-content/uploads/2020/05/AdobeStock_104060928.jpeg" alt="turkey">
+
+            <p style="padding-left: 30px; font-size: 20px; text-align: center;"> 
+                Walk in the footsteps of Roman emperors and Ottoman sultans. Explore some of the world's greatest monuments.
+                Bargain-hunt your way through a twisted warren of marketplace stalls, pausing to sip tea with a merchant.
+                Inhale the apple-flavored smoke from a water pipe as you listen to the strains of exotic music.
+                And enjoy meeting some of the planet's friendliest people, whether you're chatting with a fisherman on a bustling bridge, 
+                haggling for a carpet, learning about Islam from a peace-loving Muslim, or playing backgammon with a grizzled old Turk. 
+            </p>
+
+        </div>
+
+        <br>
+
+        <hr width="900px">
+
+        <!--DESTINATIONS-->
+
+        <div id="flip1" class="flip">
+
+            <h2>Destinations<h2>
+            <img class="img_icon" width="25px" src="https://static.thenounproject.com/png/626257-200.png" alt="Open Destinations">
+
+            <div id="panel" class="panel" >
+
+                <p style="font-size: large; width: 350px; display: inline-block;">
+                    Packed to the brim with ancient monuments left over from a parade of conquerors, 
+                    and endowed with showcase scenery that never fails to impress, Turkey is a dazzling
+                    destination that straddles Asia and Europe. Its vibrant culture, famous food, 
+                    and vast history wow all who venture here, while its glorious landscapes-from 
+                    the sun-soaked Mediterranean to the mighty mountains and arid steppe-are highlights 
+                    in themselves.
+                </p>
+
+                <ul class="ul_2">
+
+                    <h3>5 best destinations</h3>
+
+                    <li>Aya Sofya</li>
+
+                    <li>Ephesus</li>
+
+                    <li>Cappadocia</li>
+
+                    <li>Topkapi Palace</li>
+
+                    <li>Pamukkale</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <hr width="900px">
+
+        <!--CULTURE-->
+        
+        <div id="flip2" class="flip">
+
+            <h2>Culture</h2>
+            <img class="img_icon" width="25px" src="https://static.thenounproject.com/png/626257-200.png" alt="Open Destinations">
+
+            <div id="panel2" class="panel">
+
+                <div>
+                    <img class="img" width="55" src="https://www.ktu.edu.tr/dosyalar/obsen_31843.png" alt="tea">
+                    <img class="img" width="55" src="https://www.ktu.edu.tr/dosyalar/obsen_8e6bf.jpg" alt="turkish instrument">
+                    <img class="img" width="55" src="https://www.ktu.edu.tr/dosyalar/obsen_c9477.png" alt="turkish painting">
+                    <img class="img" width="55" src="https://www.ktu.edu.tr/dosyalar/obsen_70848.png" alt="turkish pottery">
+                </div>
+
+
+                <p style="width: 300px; font-size: large; display: inline-block;">
+                    Turkey has a very diverse culture that is a blend of various elements of the Oğuz Turkic 
+                    and Anatolian, Ottoman (which was itself a continuation of both Greco-Roman and Islamic
+                    cultures), and Western culture and traditions which started with the Westernization of 
+                    the Ottoman Empire and continues today.This mix is a result of the encounter of Turks 
+                    and their culture with those of the peoples who were in their path during their migration
+                    from Central Asia to the West.As Turkey successfully transformed from the 
+                    religion-based former Ottoman Empire into a modern nation-state with a very strong 
+                    separation of state and religion, an increase in the methods of artistic expression
+                    followed.During the first years of the republic, the government invested a large amount
+                    of resources into fine arts, such as museums, theatres, and architecture.Because 
+                    of different historical factors playing an important role in defining the modern
+                    Turkish identity,Turkish culture is a product of efforts to be "modern" and Western, 
+                    combined with the necessity felt to maintain traditional religious and historical values.
+                    <a href="https://www.ktu.edu.tr/obsen-aboutturkeyculture" target="blank">learn more here.</a>
+                </p>
+
+            </div>
+
+        </div>
+
+        <hr width="900px">
+
+        <!--FOOD-->
+
+        <div id="flip3" class="flip">
+
+            <h2>Food</h2>
+            <img class="img_icon" width="25px" src="https://static.thenounproject.com/png/626257-200.png" alt="Open Destinations">
+
+            <div id="panel3" class="panel">
+
+                <p style=" width: 350px; font-size: large; display: inline-block;">
+                    Turkish cuisine is one of the worlds top cuisines, joining the ranks of French, Chinese,
+                    Italian, and the like. Like the country’s cultural mosaic, the food of Turkey is very 
+                    colorful and contains countless different influences and tastes. The cuisine of Turkey
+                    has continued to evolve over centuries, deriving influence from its rich history of 
+                    lands that hosted first the Byzantine, and then the Ottoman Empires.
+                </p>
+
+                <ul class="ul_2">
+
+                    <h3>Best foods to try in turkey</h3>
+
+                    <li>Kebap</li>
+
+                    <li>Köfte</li>
+
+                    <li>Hamsi</li>
+
+                    <li>Zeytinyağlılar</li>
+
+                    <li>Dolma</li>
+
+                </ul>
+
+
+            </div>
+        </div>
+
+        <hr width="900px">
+
+        <!--WHAT NOT TO DO THERE-->
+
+        <div id="flip4" class="flip">
+
+            <h2>What not to do there</h2>
+            <img class="img_icon" width="25px" src="https://static.thenounproject.com/png/626257-200.png" alt="Open Destinations">
+
+            <div id="panel4" class="panel">
+
+                <p style="width: 350px; padding-left: 150px; text-align: center; font-size: large;">
+
+                    Turksih culture is very rich diverse and complex so they are many do's and dont's
+                    and I cant list them all here but here are some mains ones. 
+                    <a href="https://www.globelink.co.uk/articles/country-information/travelling-to-turkey/dos-and-donts-when-travelling-in-turkey.html" target="blank">
+                        I recomend this site for more information.
+                    </a>
+
+                </p>
+
+                <ul style="padding-left: 100px; width: 500px; text-align: center;">
+
+                    <h3 style="text-align: center;">Do's and Dont's</h3>
+
+                    <li>Do remove shoes or sandals before you go inside any mosque.</li>
+
+                    <li>Do wear modest loose fitting clothing, meaning no shorts for males or females</li>
+
+                    <li>Don’t visit a mosque on a Friday, the Muslim day for worship.</li>
+
+                    <li>Don’t walk in front of a person who is praying.</li>
+
+                    <li>Don’t be surprised if merchandise sellers negotiate on the price of everything they are are selling! </li>
+
+                    <li>Don't rob a bank</li>
+
+                </ul>
+
+
+            </div>
+
+        </div>
+
+        <hr width="900px">
+
+        <!--SURVAY-->
+
+        <div id="flip5" class="flip">
+
+            <h2>Survay</h2>
+            <img class="img_icon" width="25px" src="https://static.thenounproject.com/png/626257-200.png" alt="Open Destinations">
+
+            <div id="panel5" class="panel">
+            
+                <form style="text-align: center;" class="center">
+
+                    <h3 class="center" style="text-align: center;"> Sign up for daily updates</h3>
+                    <p>Enter your information to recived daily email updates</p>
+
+                    <section>
+
+                    <label for="name">Full name:</label>
+
+                    <br>
+
+                    <input type="text" id="name" name="fname"> 
+
+                    <br>
+            
+                    </section>
+
+                    <br>
+
+                    <h3>enter you email</h3>
+
+                    <br>
+
+                    <section>
+
+                    <br>
+
+                    <label for="email">Email:</label>
+
+                    <br>
+
+                    <input type="text" id="email" name="user_email"> 
+
+                    <br>
+
+                    <h3>Did you find what you needed here?</h3>
+
+                    <input type="radio" id="dyfy" name="dyfnn">
+                    <label for="dyfy">yes</label>
+                    
+                    <br>
+
+                    <input type="radio" id="dyfn" name="dyfnn">
+                    <label for="dyfn">no</label>
+                    
+                    </section>
+
+                    <section>
+
+                    <h3 style="display: block;">Personal message</h3>
+
+                    <textarea></textarea>
+                    
+                    </section>
+
+                    <br>
+
+                    <input type="submit" value="Submit">
+
+                    <br>
+
+                </form>
+        
+            </div>
+        
+        </div>
+
+        <hr width="900px">
+
+        <!--CLOSEING-->
+
+        <div style="margin-left: auto; margin-right: auto; display: block; width: 500px; text-align: center;">
+
+            <br>
+
+            <a href=""><img width="15px" class="center"  src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-up-01-512.png" alt="back to top"></a>
+            
+            <br>
+
+            <!--closeing msg--> 
+
+            <p style="padding-left: 30px; font-size: 20px; text-align: center;">
+
+                I hope you learned something new today and were inspired to take a trip to turkey. 
+                Good luck and stay safe! But before you go here are some helpful source links 
+                to get you on track to becoming a turkey traveling expert. enjoy!
+
+            </p>
+
+            <br>
+
+            <!--source's-->
+
+            <ul>
+
+                <h3>Sources</h3>
+
+                <a href="https://www.ricksteves.com/europe/turkey" target="blank"><li>https://www.ricksteves.com/europe/turkey</li></a>
+
+                <a href="https://turkeytravelplanner.com/" target="blank"><li>https://turkeytravelplanner.com/</li></a>
+
+                <a href="https://www.travelandleisure.com/travel-guide/turkey" target="blank"><li>https://www.travelandleisure.com/travel-guide/turkey</li></a>
+
+            </ul>
+
+            <br>
+
+        </div>
+
+    </body>
+
+</html>

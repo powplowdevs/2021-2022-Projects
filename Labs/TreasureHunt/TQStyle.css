@@ -1,0 +1,51 @@
+body {
+    font-family: 'Potta One', cursive;
+    background-color:bisque;
+    color: rgb(58, 33, 3); 
+}
+h1 {
+    text-align: center;
+}
+#container {
+    display: grid;
+    grid-template: 1fr 5fr 1fr/150px 600px 250px;
+    justify-items: center;
+    align-items: center;
+}
+#heading {
+    grid-area: 1/1/span 1/span 3;
+}
+#map {
+    width:1000px;
+    height: 500px;
+    display: block;
+    margin: auto;
+}
+#button-box {
+    grid-area: 3/1/span 1/span 1;
+    background-color: rgb(190, 150, 96);
+    width: 150px;
+    height: 65px;
+    text-align: center;
+    display: grid;
+    align-content: center;
+}
+#main-body {
+    width: 100%;
+    grid-area: 2/1/span 1/span 2;
+    
+}
+#message-box {
+    grid-area: 3/2/span 1/span 1;
+    background-color: burlywood;
+    width: 600px;
+    height: 65px;
+    text-align: center;
+}
+#click-box {
+    grid-area: 3/3/span 1/span 1;
+    background-color: rgb(190, 150, 96);
+    width: 250px;
+    height: 65px;
+    text-align: center;
+}

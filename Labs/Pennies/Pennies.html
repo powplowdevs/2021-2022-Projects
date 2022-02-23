@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>23 Pennies</title>
+        <link rel="stylesheet" href="PennyStyle.css" type="text/css">
+    </head>
+    <body>
+        <h3 style="text-align: left;" id="diff">difficulty: Easy</h3>
+        <div id="info"></div>
+        <div id="pieces"></div>
+        <div id="buttons">
+            <button onclick="take(1)">1<br>Penny</button>
+            <button onclick="take(2)">2<br>Pennies</button>
+            <button onclick="take(3)">3<br>Pennies</button>
+        </div>
+        <div id="feedback"></div>
+        <button onclick="reset()">Press to restart</button>
+        <button onclick="switchdifficulty()">Press to switch difficulty</button>
+        <script src="PennyScript.js"></script>
+    </body>
+</html>

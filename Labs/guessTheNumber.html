@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--On my honor as a student, I have neither given nor received any unauthorized aid on this assignment.-->
+
+<head>
+
+    <!--Page title-->
+    <title>Lab11 I think? AM</title>
+    
+    <!--JS-->
+    <script>
+
+        //Simple guess the number game
+        const maximum = 11;
+        const number = Math.floor(Math.random() * maximum);
+        let guess = 0;
+
+        while(guess != number){
+            guess = prompt("Enter your guess (0-10)");
+
+            if (guess > 0 && parseInt(guess) < maximum){
+                
+                if (guess == number){
+                    alert("Wow you got it!");
+                }
+
+                else{
+
+                    if (guess > number){
+                        alert("nope, to high");
+                    }
+
+                    else if(guess < number){
+                        alert("nope, to low");
+                    }
+
+                }
+            }
+
+            else{
+                alert("invlid value")
+            }
+    
+        }
+
+    </script>
+
+</head>
+
+<body>
+</body>

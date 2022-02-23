@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--On my honor as a student, I have neither given nor received any unauthorized aid on this assignment.-->
+
+<head>
+
+    <!--Page title-->
+    <title>Temp converter</title>
+    
+    <!--JS-->
+    <script>
+        
+        //convert x to y
+
+        //starting temp type
+        const startTempType = prompt("Enter your type of temp (kel,far,cel):");
+        
+        //starting temp
+        const startTemp = prompt("Enter your temp")
+
+        //convert temp
+        const convertTemp = prompt("Enter the temp type to convert to")
+
+        //end temp
+        let endTemp = ""
+        
+        if (startTempType == "kel"){
+            
+            //Celsius temp based on kelvin temp
+            const celsius = startTemp-273;
+
+            //fahrenheit temp 
+            const fahrenheit = (celsius * (9/5)) + 32;
+
+            if (convertTemp == "cel"){
+                endTemp = celsius;
+            }
+            else{
+                endTemp = fahrenheit;
+            }
+        }
+        
+        if (startTempType == "cel"){
+            
+            //kelvin temp based on celsius temp
+            const kel = startTemp+273;
+
+            //fahrenheit temp
+            const fahrenheit = (startTemp * (9/5)) + 32;
+
+            if (convertTemp == "far"){
+                endTemp = fahrenheit;
+            }
+            else{
+                endTemp = kel;
+            }
+        }
+
+        if (startTempType == "far"){
+            
+            //fahrenheit temp 
+            const celsius = (startTemp - 32) * 5/9;
+
+            //kelvin temp based on celsius temp
+            const kel = celsius+273;
+
+            if (convertTemp == "kel"){
+                endTemp = kel;
+            }
+            else{
+                endTemp = celsius;
+            }
+        }
+
+
+        //show user there converted temp
+        alert(startTemp + " degrees " + startTempType + " is " + endTemp + " degrees " + convertTemp)
+
+    </script>
+
+</head>
+
+<body>
+</body>

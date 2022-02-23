@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+
+<html>
+    <head>
+        <title>DOM & JQ</title>
+    </head>
+
+    <body>
+        <h1 id="heading">This is a heading</h1>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+        <script>
+
+            //let headding = document.getElementById("heading")
+            //headding.innerHTML = prompt("give me a new headding")
+
+            let headding = $("#heading")
+            let anchor = $('<a href="https://google.com">')
+            anchor.text('click!')
+            $("body").append(anchor)
+            headding.css("color","red").css("text-align","center").addClass("TEST")
+
+            let list = $("<ul>").attr("id","favFood").text("Food list")
+            list.append("<li>food1</li>")
+            list.append("<li>food2</li>")
+            headding.append(list)
+
+        </script>    
+
+     </body>
+</html>

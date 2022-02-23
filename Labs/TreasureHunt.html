@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+
+<!--Ayoub
+On my honor as a student i have not giveing or recvived any 
+unothorrized any assitance as a student on this assignment 
+--> 
+
+<html>
+
+    <head>
+
+        <!--Page title-->
+        <title>TreasureHunt game</title>
+        
+        <!--CSS-->
+        <style>
+
+            body{
+                text-align: center;
+                background-image: url("https://thumbs.dreamstime.com/b/treasure-map-isolated-background-d-illustration-antique-treasure-pirates-map-background-109121929.jpg");
+                background-size: 100%;
+            }
+
+            .game-board{ 
+                display: grid;
+                grid-template-columns: 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px ; 
+                grid-template-rows: 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 20px;
+                justify-content: center;
+            }
+
+        </style>
+
+
+    </head>
+
+    <body>
+
+        <!--Title-->
+        <div>
+            <h1>Treasure Hunt</h1>
+        </div>
+
+        <br>
+        <br>
+
+        <!--GAME START UI / INFO UI-->
+        <div>
+            <a onclick="setUp()">
+                <h2 id="info">Click me to start the game!</h2>
+                <h2 id ="moves">Moves left:xxx</h2>
+            </a>
+        </div>
+
+        <div class = "game-board">
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box00"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box10"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box20"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box30"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box40"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box50"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box60"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box70"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box80"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box90"></div>
+            
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box01"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box11"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box21"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box31"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box41"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box51"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box61"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box71"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box81"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box91"></div>
+                    
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box02"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box12"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box22"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box32"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box42"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box52"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box62"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box72"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box82"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box92"></div>
+                
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box03"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box13"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box23"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box33"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box43"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box53"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box63"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box73"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box83"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box93"></div>
+                    
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box04"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box14"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box24"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box34"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box44"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box54"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box64"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box74"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box84"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box94"></div>
+                    
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box05"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box15"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box25"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box35"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box45"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box55"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box65"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box75"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box85"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box95"></div>
+                    
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box06"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box16"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box26"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box36"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box46"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box56"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box66"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box76"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box86"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box96"></div>
+                    
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box07"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box17"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box27"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box37"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box47"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box57"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box67"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box77"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box87"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box97"></div>
+                    
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box08"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box18"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box28"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box38"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box48"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box58"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box68"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box78"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box88"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box98"></div>
+                    
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box09"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box19"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box29"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box39"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box49"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box59"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box69"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box79"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box89"></div>
+            <div style="background: #d9d9d9; border: 1px solid black;" id="box99"></div>   
+        </div>
+
+        <!--JS-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script> 
+
+            let pos = [0,0] //X_1, Y_1
+            let tres = ["stick","gold","silver","peanut","dimond","A copy of GTA 6!!!"]
+            let tresName = ""
+            let tresPos = [0,0] //X_2, Y_2
+            let moveCap = 0
+            let moves = 0
+            
+            //Find distance from tressure
+            function findDis(){
+                return Math.round(Math.sqrt(Math.pow((tresPos[0]-pos[0]),2) + Math.pow((tresPos[1]-pos[1]),2)))   //d=√( (x_2-x_1)² + (y_2-y_1)² )
+            }
+
+            //Set up the game
+            function setUp(){
+                //Step 1: Assign vars values
+                pos[0] = Math.floor(Math.random() * 10);
+                pos[1] = Math.floor(Math.random() * 10);
+                tresName =  tres[Math.floor(Math.random() * tres.length)];
+                tresPos[0] = Math.floor(Math.random() * 10);
+                tresPos[1] = Math.floor(Math.random() * 10);
+
+                //Step 2: Update game grid and UI
+
+                //Substep 1: Add player to grid
+                document.getElementById("box" + pos[0] + pos[1]).style.backgroundColor = "blue";
+
+                //Substep 2: Update UI
+                document.getElementById("info").innerHTML = "You are " + findDis() + " blocks away from the treasure";
+                moveCap =  (Math.round(findDis()) * 2) + 2
+                document.getElementById("moves").innerHTML = "Moves: " + moveCap
+
+                if (tresPos == pos){
+                    setUp()
+                }
+            }
+
+            //update game
+            async function update(num){
+
+                //Step 1: Clear grid
+                switch (num){
+                    case 1:
+                        document.getElementById("box" + pos[0] + (pos[1] - 1)).style.backgroundColor = "#d9d9d9";
+                        break;
+                    case 2:
+                        document.getElementById("box" + pos[0] + (pos[1] + 1)).style.backgroundColor = "#d9d9d9";
+                        break;
+                    case 3:
+                        document.getElementById("box" + (pos[0] + 1) + pos[1] ).style.backgroundColor = "#d9d9d9";
+                        break;
+                    case 4:
+                        document.getElementById("box" + (pos[0] - 1) + pos[1]).style.backgroundColor = "#d9d9d9";
+                        break;
+                }
+
+                //CHECK IF THEY LOST
+                if (moves >= moveCap){
+                    document.getElementById("info").innerHTML = "You ran out of moves! the treasure was as " + tresPos + ", Resting shortly...";
+                    document.getElementById("box" + tresPos[0] + tresPos[1]).style.backgroundColor = "gold";
+                    await new Promise(r => setTimeout(r, 3000));
+                    document.getElementById("box" + pos[0] + pos[1]).style.backgroundColor = "#d9d9d9";
+                    document.getElementById("box" + tresPos[0] + tresPos[1]).style.backgroundColor = "#d9d9d9";
+                    moves = 0
+                    setUp()
+                }
+
+                //Step 2: Add player to grid
+                document.getElementById("box" + pos[0] + pos[1]).style.backgroundColor = "blue";
+
+                //Step 3: Update UI
+                document.getElementById("info").innerHTML = "You are " + findDis() + " blocks away from the treasure";
+                moves += 1
+                document.getElementById("moves").innerHTML = "Moves: " + (moveCap - moves)
+
+                //Step 4: Check found status
+                if (findDis() == 0){
+                    document.getElementById("info").innerHTML = "You found a " + tresName + " The crew is mapping a route to a new treasure";
+                    document.getElementById("box" + pos[0] + pos[1]).style.backgroundColor = "gold";
+                    await new Promise(r => setTimeout(r, 3000));
+                    document.getElementById("box" + pos[0] + pos[1]).style.backgroundColor = "#d9d9d9";
+                    moves = 0
+                    setUp()
+                }
+            }
+
+            //----------CODE FROM: https://stackoverflow.com/questions/4416505/how-to-take-keyboard-input-in-javascript----------
+            window.addEventListener("keydown", function (event) {
+                if (event.defaultPrevented) {
+                    return; // Do nothing if the event was already processed
+                }
+
+                switch (event.key) {
+                    case "ArrowDown":
+                    // code for "down arrow" key press.
+                    if (pos[1] != 9){
+                        pos[1] += 1
+                        update(1)
+                    }
+                    break;
+                    case "ArrowUp":
+                    // code for "up arrow" key press.
+                    if (pos[1] != 0){
+                        pos[1] -= 1
+                        update(2)
+                    }
+                    break;
+                    case "ArrowLeft":
+                    // code for "left arrow" key press.
+                    if (pos[0] != 0){
+                        pos[0] -= 1
+                        update(3)
+                    }
+                    break;
+                    case "ArrowRight":
+                    // code for "right arrow" key press.
+                    if (pos[0] != 9){
+                        pos[0] += 1
+                        update(4)
+                    }
+                    break;
+                    default:
+                    return; // Quit when this doesn't handle the key event.
+                }
+
+                // Cancel the default action to avoid it being handled twice
+                event.preventDefault();
+                }, true);
+            //----------CODE FROM: https://stackoverflow.com/questions/4416505/how-to-take-keyboard-input-in-javascript----------
+            
+        </script>
+        
+    </body>
+
+</html>

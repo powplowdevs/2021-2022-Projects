@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<!--
+Ayoub
+On my honor as a student i have not giveing or recvived any 
+unothorrized any assitance as a student on this assignment 
+-->
+
+<html>
+
+    <head>
+
+        <title>PhotoGallery</title>
+
+        <style>
+
+            .mainpage{
+                background-color: snow;
+                text-align: center;
+            }
+
+            .imgline{
+                margin: 5px;
+                width: 1000px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .inline{
+                margin: 5px;
+                display: inline-block;
+                border: 2px solid #ccc;
+            }
+
+            .inline :hover {
+                border: 3px solid #ccc;
+            }
+
+            .imggrid{
+                margin: 5px;
+                width: 500px;
+                margin-left: auto;
+                margin-right: auto;
+                background-color: gray;
+            }
+
+            .imggrid img{
+                border: 10px blue solid;
+            }
+
+            button :hover{
+                width: 26px;
+            }
+
+            #magicimg{
+                border: orange 4px groove;
+            }
+
+            #scrollimg{
+                border: lime 5px dashed;
+            }
+            
+        </style>
+
+        <script>
+
+            var img1 = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7sX30GHwRr7S_9LrQNjo0hvBMRJvRXl6b9MHPxjjB-syOxdMHV4Ve7WzEPD6MNd5uB8U:https://upload.wikimedia.org/wikipedia/commons/6/6e/Monasterio_Khor_Virap%252C_Armenia%252C_2016-10-01%252C_DD_25.jpg&usqp=CAU";
+            var img2 = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPfnakuLtbMmO2CNAfhx-Jh8VxnwovXDU3lqzdbLzNkurOsITTHDQMBkKGj8OzH4OIO8Q:https://www.travelmanagers.com.au/wp-content/uploads/2012/08/AdobeStock_254529936_Railroad-to-Denali-National-Park-Alaska_750x500.jpg&usqp=CAU";
+            var img3 = "https://www.atlasandboots.com/wp-content/uploads/2019/05/ama-dablam2-most-beautiful-mountains-in-the-world.jpg";
+
+            var index = 1;
+            var magic_index = false;
+            var imgid = "scrollimg"
+            var borders = ["solid", "dashed", "double", "groove", "inset", "hidden", "ridge", "outset"]
+            var colors = ["red", "orange", "yellow", "green", "blue", "pink", "purple"]
+
+            function forward(){
+
+                if (index == 1){
+                    document.getElementById(imgid).src=img2;
+                    index = 2;
+                }
+
+                else if (index == 2){
+                    document.getElementById(imgid).src=img3;
+                    index = 3;
+                }
+
+                else {
+                    document.getElementById(imgid).src= img1;
+                    index = 1;
+                }
+            }
+
+            function backwards(){
+
+                if (index == 1){
+                    document.getElementById(imgid).src=img3;
+                    index = 3;
+                }
+
+                else if (index == 2){
+                    document.getElementById(imgid).src=img1;
+                    index = 1;
+                }
+
+                else {
+                    document.getElementById(imgid).src= img2;
+                    index = 2;
+                }
+            }
+
+            function magic(){
+
+                if (magic_index == true){
+                    var index_border = Math.floor((Math.random()*10)+1);
+                    var new_border = (borders[index_border]);
+                    var new_color = (colors[index_border])
+                    document.getElementById("magicimg").style.border = new_border;
+                    document.getElementById("magicimg").style.borderColor = new_color;
+                    document.getElementById("magicimg").style.borderWidth = "4px";
+                    document.getElementById("magicimg").style.display = "inline";
+                    magic_index = false
+                }
+
+                else{
+                    var index_border = Math.floor((Math.random()*10)+1);
+                    var new_border = (borders[index_border]);
+                    var new_color = (colors[index_border])
+                    document.getElementById("magicimg").style.border = new_border;
+                    document.getElementById("magicimg").style.borderColor = new_color;
+                    document.getElementById("magicimg").style.borderWidth = "4px";
+                    document.getElementById("magicimg").style.display = "none"
+                    magic_index = true
+                }
+
+            }
+        
+        </script>
+
+    </head>
+
+    <body class="mainpage">
+
+        <!--PAGE TITLE-->
+
+        <div>
+            <h1>Tods photo gallery</h1>
+            <caption>where the phtos are</caption>
+        </div>
+
+        <hr>
+
+        <!--PHTO LINE-->
+        
+        <div class="imgline">
+
+            <h2>Image line</h2>
+
+            <!--SUMMER-->
+            <div class="inline">
+
+                <img width="200px" src="https://dlq00ggnjruqn.cloudfront.net/prometheus/getImage?id=226043&width=1220&height=890" alt="spring">
+
+                <div>
+                    Summer
+                </div>
+
+            </div>
+
+            <!--FALL-->
+            <div class="inline">
+
+                <img width="200px" src="https://i.insider.com/5f624a4c323fc4001e0d6a40?width=700" alt="spring">
+
+                <div>
+                    Fall
+                </div>
+
+            </div>
+
+            <!--WINTER-->
+            <div class="inline">
+
+                <img width="200px" src="https://idsb.tmgrup.com.tr/ly/uploads/images/2020/12/18/79990.jpg" alt="winter">
+
+                <div>
+                    Winter
+                </div>
+
+            </div>
+
+            <!--SPRING-->
+            <div class="inline">
+
+                <img width="200px" src="https://cdn.mos.cms.futurecdn.net/Kg2EFB7xEwCQgkfhGUJirM-1200-80.jpg" alt="spring">
+
+                <div>
+                    Spring
+                </div>
+
+            </div>
+            
+        </div>
+
+        <hr>
+
+        <!--PHTO GRID-->
+        
+        <div class="imggrid">
+
+            <h2>image grid</h2>
+
+            <!--CAT-->
+            <div class="inline">
+
+                <img width="200px" src="https://i.guim.co.uk/img/media/26392d05302e02f7bf4eb143bb84c8097d09144b/446_167_3683_2210/master/3683.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=49ed3252c0b2ffb49cf8b508892e452d" alt="a cat">
+
+                <div>
+                    A cat
+                </div>
+
+            </div>
+
+            <!--DOG-->
+            <div class="inline">
+                
+                <img width="200px" src="https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg" alt="a dog">
+
+                <div>
+                    A dog
+                </div>
+
+            </div>
+
+            <!--LIZZARD-->
+            <div class="inline">
+                
+                <img width="200px" src="https://www.petmd.com/sites/default/files/styles/article_image/public/hand-holding-iguana-120960418_1.jpg?itok=OwWAuPIQ" alt="a lizzard">
+
+                <div>
+                    A lizzard
+                </div>
+
+            </div>
+
+            <!--TURTLE-->
+            <div class="inline">
+                
+                <img width="200px" src="https://cdn.britannica.com/02/157202-050-26FD69B6/tortoise-ground-species-Galapagos-Islands-home-archipelago.jpg" alt="a turtle">
+
+                <div>
+                    A turtle
+                </div>
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <!--PHTO SLIDER-->
+        
+        <div>
+
+            <h2>Image slider</h2>
+            
+            <button onclick="backwards();" style="background-color: transparent; border: transparent;"><img style="padding-bottom: 100px;" width="25px" src="https://cdn-icons-png.flaticon.com/512/0/340.png" alt="back"></button>
+
+            <img id="scrollimg" width="500px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7sX30GHwRr7S_9LrQNjo0hvBMRJvRXl6b9MHPxjjB-syOxdMHV4Ve7WzEPD6MNd5uB8U:https://upload.wikimedia.org/wikipedia/commons/6/6e/Monasterio_Khor_Virap%252C_Armenia%252C_2016-10-01%252C_DD_25.jpg&usqp=CAU" alt="moutain">
+   
+            <button onclick="forward();" style="background-color: transparent; border: transparent;"><img style="padding-bottom: 100px;" width="25px" src="https://www.pngrepo.com/png/152077/180/next-arrow.png" alt="back"></button>
+            
+
+        </div>
+
+        <hr>
+
+        <!--MAGIC BUTTON-->
+
+        <div>
+            
+            <img id="magicimg" src="https://www.ontariosciencecentre.ca/media/1896/osc_fblive_mar16_homepage_block.png" alt="magic">
+
+            <br>
+
+            <button onclick="magic()">Im magic!</button>
+
+        </div>
+
+        <hr>
+
+    </body>
+
+</html>

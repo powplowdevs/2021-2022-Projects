@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+
+        <title>quizzer</title>
+
+        <script>
+
+            let q1 = {
+                qu: "What is 1+1?",
+                ans: "2"
+            }
+
+            let q2 = {
+                qu: "how many states are in the US?",
+                ans: "50"
+            }
+
+            let q3 = {
+                qu: "if jon has 300 sticks and he snaps all of them in half how mant stick dose he have now?",
+                ans: "600"
+            }
+
+            let q4 = {
+                qu: "What is 2*5",
+                ans: "10"
+            }
+
+            let q5 = {
+                qu: "whats the name of this site?",
+                ans: "quizzer"
+            }
+
+            let questions = [q1,q2,q3,q4,q5];
+            let qlen = questions.length;
+            let correct = 0;
+            let wrong = 0;
+
+            for (let i = 0; i < qlen; i++){
+
+                let index = Math.floor(Math.random() * questions.length);
+                let question = questions[index];
+                let playerans = prompt(question.qu);
+
+                if (playerans.toLowerCase() == question.ans){
+                    alert("Correct!");
+                    correct++;
+                }
+                
+                else{
+                    alert("Wrong! The correct answer was " + question.ans);
+                    wrong++;
+                }
+
+                questions.splice(index, 1);
+
+            }
+
+            alert(" You got " + correct + " correct and " + wrong + " wrong");
+
+        </script>
+
+    </head>
+
+    <body>
+
+    </body>
+</html>

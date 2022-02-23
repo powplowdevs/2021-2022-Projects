@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+
+<!--Ayoub
+On my honor as a student i have not giveing or recvived any 
+unothorrized any assitance as a student on this assignment 
+-->
+
+
+<html>
+
+  <head>
+    <title>Cav Burgers</title>
+  </head>
+
+  <body style="background-color: gray;">
+
+    <section style = "text-align:center; background-color: darkgray; width: 500px; margin: auto;" >
+
+      <img src="https://woodsonhs.fcps.edu/sites/default/files/WT-Woodson%20logo.png" width = "200" alt="Woodson Burgers Logo" id="logo">
+      
+      <hr>
+      
+      <form action="/practice.html" method="POST">
+
+        <h1>Now taking ONLINE orders!!</h1>
+        <p>Place your order online while in class.  Then come and pick it up during lunch with no wait.</p>
+
+        <section>
+
+          <label for="name">Full name:</label>
+
+          <br>
+
+          <input type="text" id="name" name="fname"> 
+
+          <br>
+
+          <label for="Password">Password:</label>
+
+          <br>
+
+          <input type="text" id="Password" name="Password">
+
+          <br>
+  
+        </section>
+
+        <section>
+
+          
+          <h2>Build your Sandwich</h2>
+          <!--Add your code below-->
+          <select>
+
+            <option value="steak">steak</option>
+
+            <option value="turkey">turkey</option>
+
+            <option value="tuna">tuna</option>
+
+            <option value="sofritas">sofritas</option>
+
+          </select>
+
+          <h3>double portion?</h3>
+
+          <input type="radio" id="yes" name="double portion?">
+          <label for="yes">yes</label>
+        
+          <br>
+
+          <input type="radio" id="no" name="double portion?">
+          <label for="no">no</label>
+        
+          <br>
+          <br>
+
+          <label for="toasted">Toasted (between 0% and 100%):</label>
+          <input type="range" id="toasted" name="toasted" min="0" max="100">
+
+          <br>
+
+          <h2>Choose some toppings</h2>
+
+          <input type="checkbox" id="cheese" name="cheese" value="cheese">
+          <label for="cheese">cheese</label>
+
+          <br>
+
+          <input type="checkbox" id="onions" name="onions" value="onions">
+          <label for="onions">onions</label>
+
+          <br>
+
+          <input type="checkbox" id="lettus" name="lettus" value="lettus">
+          <label for="lettus">lettus</label>
+
+          <br>
+
+          <input type="checkbox" id="tomatoes" name="tomatoes" value="tomatoes">
+          <label for="tomatoes">tomatoes</label>
+
+        </section>
+
+        <section>
+          <h2>Add a Side</h2>
+          <!--Add your code below-->
+
+          <label for="sides">Choose your side from the list</label>
+          <input type="text" list="sides">
+          
+          <datalist id="sides">
+
+            <option value="fruits">
+            <option value="salad">
+            <option value="vegetables">
+            <option value="none">
+
+          </datalist>
+
+        </section>
+
+        <section>
+          <h2>Special Instructions</h2>
+          <!--Add your code below-->
+
+          <textarea></textarea>
+          
+        </section>
+
+        <br>
+
+        <input type="submit" value="Submit">
+
+      </form>
+
+    </section>
+    
+</body>
+</html>

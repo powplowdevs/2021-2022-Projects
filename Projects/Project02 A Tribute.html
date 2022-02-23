@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+
+<!--
+Ayoub
+On my honor as a student i have not giveing or recvived any 
+unothorrized aid assitance as a student on this assignment 
+-->
+
+<html>
+
+    <head>
+
+        <title>Tribute to Shreak</title>
+
+        <style>
+
+            body{
+                background-color: burlywood;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                margin: 0;
+                padding: 0;
+            }
+
+            /*PAGE TITLE*/
+            
+            .PT{
+                position: sticky;
+                top: 0;
+            }
+
+            .PT ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                background-color: green;
+            }
+
+            .PT li {
+                float: left;
+            }
+
+            .PT li a {
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+
+            #nreg{
+                background-color: darkgreen;
+            }
+
+            #reg a:hover {
+                background-color:darkgreen;
+            }
+
+            /*MAIN IMG*/
+            #mainimg{
+                width: 100%;
+            }
+
+            /*WHO IS SHREAK*/
+            .WIS{
+                display: inline-block;
+            }
+
+            .WIS p{
+                padding-left: 120px;
+                width: 300px;
+            }
+
+            .WIS h2{
+                padding-left: 100px;
+                font-size: xx-large;
+            }
+
+            /*SHREKS BEST FRIEND*/
+            .SBF{
+                display: inline-block;
+            }
+
+            .SBF p{
+                padding-left: 120px;
+                width: 300px;
+            }
+
+
+            .SBF h2{
+                padding-left: 100px;
+                font-size: xx-large;
+            }
+
+            /*SHREKS CONNECTIONS*/
+            .SC{
+                display: inline-block;  
+            }
+
+            .SC h2{
+                font-size: xx-large;
+            }
+
+            /*SHREKS BEST FIREND*/
+            .SBF{
+                display: inline-block;  
+            }
+
+            /*SHREAKS APPEARANCES*/
+            .SE{
+                display: inline-block;
+            }
+
+            /*MID IMG*/
+            #midimg{
+                margin: 50px;
+                width: 400px;
+            }
+
+            /*SCROLL MID*/
+            #scrollimg{
+                margin: auto;
+                width: 50%;
+                padding: 10px;
+                align-items: center;
+                text-align: center;
+            }
+
+            /*INFO SECTION*/
+            #infosec{
+                margin: auto;
+                width: 1500px;
+                padding-left: 100px;
+            }
+
+            /*TIME LINE*/
+            #TL{
+                margin: auto;
+                width: 70%;
+                align-items: center;
+                text-align: center;
+            }
+
+            button:hover{
+                background-color: #4CAF50;
+                color: white;
+            }
+
+            /*POPUPS*/
+            .fade-wrapper {
+                display: none;
+                background: rgba(0, 0, 0, 0.5);
+                height: 100vh;
+                width: 100vw;
+                position: fixed;
+                top: 0px;
+                align-items: center;
+                text-align: center;
+            }
+
+            /*LINKS*/
+            a:link {
+                color: transparent;
+            }
+
+        </style>
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        
+        <script>
+
+            var img1 = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyXlTbw5-3aUqAjAlMw0CDzvu-DSbmAbDC2DotWnNhs__Ynjou4px-xw6v5CHqGljpIuc:https://png.pngitem.com/pimgs/s/49-493527_my-boys-love-all-of-the-shrek-movies.png&usqp=CAU";
+            var img2 = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSghw7TPh6mi7308JeUwtiOef6V6KTJ0Y4nFZkjj7c3dR2CMWMK_JvfCSRnzd1mO_Qoz34:https://www.kindpng.com/picc/m/379-3794938_shrek-character-puss-in-boots-puss-in-boots.png&usqp=CAU";
+            var img3 = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJaRQnvRyvFrQWZw1heiCkXzrXVbQRse7vVg:https://iconarchive.com/download/i61334/majdi-khawaja/shrek/Shrek-5.ico&usqp=CAU";
+
+            var index = 1;
+            var magic_index = false;
+            var imgid = "imgtoscroll"
+        
+
+            function forward(){
+                if (index == 1){
+                    document.getElementById(imgid).src=img2;
+                    index = 2;
+                }
+
+                else if (index == 2){
+                    document.getElementById(imgid).src=img3;
+                    index = 3;
+                }
+
+                else {
+                    document.getElementById(imgid).src= img1;
+                    index = 1;
+                }
+            }
+
+            function backwards(){
+
+                if (index == 1){
+                    document.getElementById(imgid).src=img3;
+                    index = 3;
+                }
+
+                else if (index == 2){
+                    document.getElementById(imgid).src=img1;
+                    index = 1;
+                }
+
+                else {
+                    document.getElementById(imgid).src= img2;
+                    index = 2;
+                }
+            }
+
+            $(document).ready(function(){
+
+                $("#1").click(function(){
+                    window.scroll(0,800)
+                });
+
+                $("#2").click(function(){
+                    window.scroll(0,800)
+                });
+
+                $("#3").click(function(){
+                    window.scroll(0,1200)
+                });
+
+                $("#4").click(function(){
+                    window.scroll(0,1200)
+                });
+
+                $("#5").click(function(){
+                    window.scroll(0,1600)
+                });
+
+                $("#6").click(function(){
+                    window.scroll(0,5000)
+                });
+
+                $('.fade-wrapper').click(function(){
+                    $(this).fadeOut();
+                });
+                
+                $("#m1").click(function(){
+                    $('.fade-wrapper').fadeIn();
+                    document.getElementById("popinfo").innerHTML = "In the story, an ogre called Shrek (Myers) finds his swamp overrun by fairy tale creatures who have been banished by the corrupt Lord Farquaad (Lithgow) aspiring to be king. Shrek makes a deal with Farquaad to regain control of his swamp in return for rescuing Princess Fiona (Diaz), whom Farquaad intends to marry.";
+                });
+
+                $("#m2").click(function(){
+                    $('.fade-wrapper').fadeIn();
+                    document.getElementById("popinfo").innerHTML = "Shrek 2 takes place following the events of the first film, with Shrek and Donkey meeting Fiona's parents as her zealous Fairy Godmother, who wants Fiona to marry her son Prince Charming, plots to destroy Shrek and Fiona's marriage. ... It went on to become the highest-grossing film of 2004 worldwide.";
+                });
+
+                $("#m3").click(function(){
+                    $('.fade-wrapper').fadeIn();
+                    document.getElementById("popinfo").innerHTML = "Shrek the Third is a 2007 American computer-animated comedy film loosely based on the 1990 picture book Shrek! by William Steig. ... In the plot, Prince Charming is plotting to overthrow Shrek and Fiona, who have inherited the throne following King Harold's death.";
+                });
+
+                $("#m4").click(function(){
+                    $('.fade-wrapper').fadeIn();
+                    document.getElementById("popinfo").innerHTML = "A bored and domesticated Shrek (Mike Myers) pacts with dealmaker Rumpelstiltskin (Walt Dohrn) to get back to feeling like a real ogre again, but when he's duped and sent to a twisted version of Far, Far Away - where Rumpelstiltskin is King, ogres are hunted, and he and Fiona (Cameron Diaz) have never met ";
+                });
+
+                $("#m5").click(function(){
+                    $('.fade-wrapper').fadeIn();
+                    document.getElementById("popinfo").innerHTML = "According to DevDiscourse, Shrek 5 could focus on Shrek and Fiona's hectic life raising a bunch of teenagers. If they're even half as stubborn as their parents, their antics will no doubt make for highly entertaining -and ornery- cinema";
+                });
+                
+            });
+
+        </script>
+
+    </head>
+
+    <body>
+
+        <!--PAGE HEADDER-->
+        <div class="PT">
+
+            <ul>
+                <li id="nreg"><a>Shrek</a></li>
+                <li id="reg"><a id="1">Who is shrek</a></li>
+                <li id="reg"><a id="2">Shreks connections</a></li>
+                <li id="reg"><a id="3">Shreaks best friend</a></li>
+                <li id="reg"><a id="4">Shreks enimes</a></li>
+                <li id="reg"><a id="5">Shreks timeline</a></li>
+                <li id="reg"><a id="6">Shreks images</a></li>
+                <li id="reg"><a href="https://shrek.fandom.com/wiki/Shrek_(film)/Transcript" target="_blank" id="7">Shreks script?</a></li>
+            </ul>
+
+        </div>
+
+        <!--MAIN IMG-->
+        <div>
+            <a href="https://www.youtube.com/watch?v=L_jWHffIx5E" target="_blank"><img id="mainimg" src="https://64.media.tumblr.com/bb2dfbed383ddb432f154de57fd6431a/tumblr_n8k2g4DNAR1taxcgao1_400.gifv" alt="Shreak"></a>
+        </div>
+
+        <hr>
+
+        <!--INFO SECTION-->
+        <div id="infosec">
+
+            <!--WHO IS SHREAK-->
+            <div class="WIS">
+
+                <h2>Who is Shreak?</h2>
+
+                <p>
+                    Shrek: Our story's title character, Shrek is a big, green, terrifying ogre who lives alone on a swamp. 
+                    He embarks on a journey to help the fairytale creatures that Lord Farquaad has banished from Duloc and, 
+                    at the same time, rid his home of other creatures who might fear and ridicule him. While Shrek carries 
+                    out Farquaad's order for him to bring Farquaad Princess Fiona to marry, Shrek falls in love with Fiona. 
+                    He begins as a seemingly grumpy, short-tempered hermit, but reveals his big heart, sheds his protective 
+                    layers, and eventually shows himself as a real hero. 
+
+                    Gender: male
+
+                    Age: 25 to 50
+                </p>
+
+            </div>
+
+            <img id="midimg" src="https://www.lifepng.com/wp-content/uploads/2020/11/Shrek-png-hd.png" alt="Shreak">
+
+            <!--SHREAKS CONNECTIONS-->
+
+            <div class="SC">
+
+                <h2>Shreaks connections</h2>
+
+                <ul>
+
+                    <li>
+                        Donkey
+                    </li>
+
+                    <li>
+                        Lord Farquaad
+                    </li> 
+
+                    <li><a href="https://www.youtube.com/watch?v=0mYBSayCsH0" target="_blank">Im a believer?</a></li>
+
+                    <li>
+                        Princess Fiona
+                    </li>
+
+                    <li>
+                        Gingerbread Man
+                    </li>
+                    
+                    <li>
+                        Pinocchio
+                    </li> 
+
+                    <li>
+                        Magic Mirror
+                    </li>
+
+                    <li>
+                        Robin Hood
+                    </li>
+
+                    <li>
+                        Geppetto
+                    </li> 
+
+                    <li>
+                        Puss in boots
+                    </li> 
+
+                    <li>
+                        Duloc Mascot
+                    </li> 
+            
+                </ul>
+
+            </div>
+
+            <!--SHERKS BEST FRIEND-->
+            <div class="SBF">
+
+                <h2>Shreaks best friend</h2>
+
+                <p>
+                    Donkey: A sassy, smart-mouthed talking donkey joins Shrek 
+                    on the run from Farquaad's guards. He escaped being sold by his owner, an old woman, 
+                    and eventually met and allied with Shrek. Quite the chatterbox, 
+                    he is not deterred by Shrek’s looks or temper and practically forces 
+                    himself into Shrek’s good graces. but it always bothers or irritates the ogre. 
+                    Easily frightened and pushy, 
+                    Donkey is also an optimistic fellow with a lot of heart.
+                    He has also become the frequent companion of the honorable mercenary Puss In Boots,
+    
+                    Gender: male
+
+                    Age: 20 to 50
+                </p>
+
+            </div>
+
+            <img id="midimg" src="https://pngimg.com/uploads/shrek/shrek_PNG30.png" alt="Shreaks connections">
+
+            <!--Shreks enimes-->
+
+            <div class="SE">
+
+                <h2>Shreks enimes</h2>
+
+                <ul>
+
+                    <li>
+                        Fairy Godmother
+                    </li>
+
+                    <li>
+                        Rumpelstiltskin
+                    </li>
+
+                    <li>
+                        Lord Farquad
+                    </li>
+
+                    <li>
+                        Prince Charming
+                    </li>
+
+                    <li>
+                        Witches
+                    </li>
+
+                    <li>
+                        The Merrymen
+                    </li>
+
+                    <li>
+                        King Harold
+                    </li>
+                    
+                    <li>
+                        Monsieur Hood
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <!--SHREAK MOVIE TIMELINE-->
+
+        <div id="TL">
+
+            <h1 style="text-align: center;">shrek movie timeline</h1>
+
+            <button id="m1">movie 1</button>
+
+            <svg height="210" width="200">
+                <line x1="-10" y1="205" x2="1500" y2="205" style="stroke:rgb(255, 255, 255);stroke-width:2" />
+            </svg>
+
+            <button id="m2">movie 2</button>
+
+            <svg height="210" width="200">
+                <line x1="-10" y1="205" x2="1500" y2="205" style="stroke:rgb(255, 255, 255);stroke-width:2" />
+            </svg>
+            
+            <button id="m3">movie 3</button>
+
+            <svg height="210" width="200">
+                <line x1="-10" y1="205" x2="1500" y2="205" style="stroke:rgb(255, 255, 255);stroke-width:2" />
+            </svg>
+
+            <button id="m4">movie 4</button>
+
+            <svg height="210" width="200">
+                <line x1="-10" y1="205" x2="1500" y2="205" style="stroke:rgb(255, 255, 255);stroke-width:2" />
+            </svg>
+            
+            <button id="m5">movie 5</button>
+
+        </div>
+
+        <div class="fade-wrapper">
+
+            <div style="background: rgba(121, 120, 120, 0.5); width: 250px; height: 250px; margin: 20% auto; color: white;">
+                <p id="popinfo">*info*</p>
+            </div>
+
+        </div>
+
+        <hr>
+
+        <!--SHREAK IMG GALLARY-->
+        <div id="scrollimg">
+
+            <h2 id="imgscrollh1">Images of shrek</h2>
+            
+            <button id="imgscrollback" onclick="backwards()" style="background-color: transparent; border: transparent;"><img style="padding-bottom: 100px;" width="25px" src="https://cdn-icons-png.flaticon.com/512/0/340.png" alt="back"></button>
+
+            <img id="imgtoscroll" width="300px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyXlTbw5-3aUqAjAlMw0CDzvu-DSbmAbDC2DotWnNhs__Ynjou4px-xw6v5CHqGljpIuc:https://png.pngitem.com/pimgs/s/49-493527_my-boys-love-all-of-the-shrek-movies.png&usqp=CAU" alt="moutain">
+   
+            <button onclick="forward()" style="background-color: transparent; border: transparent;"><img style="padding-bottom: 100px;" width="25px" src="https://www.pngrepo.com/png/152077/180/next-arrow.png" alt="back"></button>
+            
+
+        </div>
+
+        <hr>
+
+    </body>
+
+</html>

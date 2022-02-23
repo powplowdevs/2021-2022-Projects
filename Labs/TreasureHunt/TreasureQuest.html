@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Treasure Map Search</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Potta+One&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="TQStyle.css" type="text/css">
+    </head>
+    <body>
+        <div id="container">
+            <div id='heading'>
+                <h1>Find the buried treasure</h1>
+            </div>
+            <div id='main-body'>
+                <img id='map' onclick="addlistener()" src='https://gislounge.com/wp-content/uploads/2013/04/google-treasure-map.png'>
+            </div>
+            <div id="message-box">
+                <h3 id="message">"Click the Map to Begin!"</h3>
+            </div>
+            <div id="click-box">
+                <h3>Clicks Remaining: <span id="clicks">15</span></h3>
+            </div>
+            <div id="button-box">
+                <button id="replay" type="button" onclick="replay()">Replay</h3>
+            </div>
+        </div>
+        <!--jQuery library code-->
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+        <script src="G:\My Drive\Programing\Labs\TreasureHunt\TQScript.JS"></script>
+    </body>
+</html>

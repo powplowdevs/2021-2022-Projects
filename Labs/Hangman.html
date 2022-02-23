@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+
+        <title>Hangman</title>
+
+        <style>
+
+            body{
+                padding-top: 5px;
+                background-color:  darkslategray;
+            }
+            
+            .letters{
+                text-align: center;
+            }
+        
+            .letters button{
+                width: 50px;
+                height: 50px;
+                margin: 1px;
+            }
+
+            .man{
+                float: right;
+                margin-right: 300px;
+                margin-top: 50px;
+            }
+
+            .word{
+                text-align: center;
+                padding-left: 200px;
+                font-size: x-large;
+            }
+
+            .SF{
+                text-align: center;
+                padding-left: 200px;
+            }
+
+        </style>
+        
+        <script>
+
+            let wordsAll = ["HANGMAN", "POPULATION", "MIGRATION", "WORD", "HARD", "EASY", "PAINT", "HAND", "OBJECT",'ability',"about","Because","Even","Find","First","From","Here","Into","Just","Know","Like","Look","Make","Know","People","Some","Take","Tell","Than","Very"]
+            let words = wordsAll.map(wordsAll => wordsAll.toUpperCase());
+            let points = []
+            let base = ""
+            let lbase = ""
+            let spots = 0
+            let fails = 0
+            let Maxfails = 0
+            let gameStart = false
+            let infos = ""
+            
+            function pickWord(){
+                return words[Math.floor(Math.random() * words.length)];
+            }
+
+            let word = pickWord()
+            Maxfails = (word.length * 2) + 5
+
+            //make our lbase an empty str with _'s
+            for (let i = 0; i < word.length; i++){
+                 lbase = lbase + "_"  
+             }
+
+            spots = word.length 
+
+            function reset(){
+                //I would reset all the vars and make it so you could reset the game at a fast speed
+                //but im to lazy to do that so im gonna just reset the whole page
+                //if it works it works
+                location.reload()
+            }
+
+            async function play(letter){
+
+                //remove the word we just picked
+                document.getElementById(letter).remove()
+
+                //make sure game has been setup if not then set it up
+                if (!gameStart){
+                    gameSetUp()
+                    gameStart = true
+                }
+                
+                else{
+
+                }
+
+                //set text UI to empty with the length of the word
+                document.getElementById("THEWORD").innerHTML = lbase
+
+                //check if letter is in word at all
+                if (word.includes(letter)){
+
+                    //now that we know the word has the letter in it we can find all of the spots the letter is
+                    //we can do this by useing the .indexOf to find the first instance of the letter then go on from there
+                    
+                    let start = word.indexOf(letter)
+                    
+                    //now lets loop trough the whole words from out start point looking for where the letter is
+                    for (let i = start; i <= word.length; i++){
+
+                        if (word[i] == letter){
+                            //lets save this point in the word where the leter was found
+                            points.push(i)
+                            //we can also remove a spot becuse we know the letter is here
+                            spots -= 1
+                        }
+
+                    }
+
+                    
+                    //now that the loop to find all the index of the letter in the word is done we can update UI            
+                    //Clear out base to code runs smooths
+                    base = ""
+                    
+                    //console.log(base)
+                    for (let i = 0; i <= word.length - 1; i++){
+                        //some how get it to reutrn a new string with replces all the _ that are in the place
+                        //of the idexs in the points list with the letter
+                        //FOR EX if the letter is "E" and the word is "EASY" it would return "E _ _ _"
+
+
+                        if (points.includes(i)){
+                            base = base + letter
+                        }
+                        else if (lbase[i] == "_"){
+                            base = base + "_"
+                        }
+                        else{
+                            base = base + lbase[i]
+                        }
+
+                    }
+                    
+                    //make out last base set to the new base to next run it will be the last base
+                    lbase = base
+
+                    //finally update ui on screen and reset 
+                    document.getElementById("THEWORD").innerHTML = base
+                    //REPLCE THIS CODE WITH A RESET FUNCTION IF IT GET TO LONG ATLEAST
+                    points = []
+                    //Update ui if won
+                    if (base == word){
+                        document.getElementById("THEWORD").innerHTML = "You win! word was " + word + ". Reseting shortly"
+                        await new Promise(r => setTimeout(r, 3000));
+                        reset()
+                    }
+
+                }
+
+                //if not then they got a fail, so lets handle that
+                else{
+
+                    //add a fail
+                    fails += 1
+
+                    if (fails == Maxfails){
+                        document.getElementById("THEWORD").innerHTML = "Fail, word was " + word + ". Reseting shortly"
+                        await new Promise(r => setTimeout(r, 3000));
+                        reset()
+                    }
+
+                }
+            
+                document.getElementById("sp").innerHTML = "Spots left:" + spots
+                document.getElementById("fl").innerHTML = "Fails left:" + (Maxfails - fails)
+
+            }
+
+            function gameSetUp(){
+                
+                infos = "Guess a " + word.length + " Letter word" 
+                document.getElementById("info").innerHTML = infos
+                infos = ""
+
+                for (let i = 0; i < word.length; i++){
+                 infos = infos + " _ "
+                }
+
+                document.getElementById("THEWORD").innerHTML = infos
+
+                gameStart = true
+            }
+
+        </script>
+
+    </head>
+
+    <body>
+
+        <!--TITLE-->
+        <h1 style="text-align: center;">HANGMAN!</h1>
+        <h2 id="info" style="text-align: center; margin-bottom: 50px;">...</h2>
+
+        <!--LETTERS-->
+        <div class="letters">
+            <button id="A" onclick="play('A')">A</button>
+            <button id="B" onclick="play('B')">B</button>
+            <button id="C" onclick="play('C')">C</button>
+            <button id="D" onclick="play('D')">D</button>
+            <button id="E" onclick="play('E')">E</button>
+            <button id="F" onclick="play('F')">F</button>
+            <button id="G" onclick="play('G')">G</button>
+            <button id="H" onclick="play('H')">H</button>
+            <button id="I" onclick="play('I')">I</button>
+            <button id="J" onclick="play('J')">J</button>
+            <button id="K" onclick="play('K')">K</button>
+            <button id="L" onclick="play('L')">L</button>
+            <button id="M" onclick="play('M')">M</button>
+            <button id="N" onclick="play('N')">N</button>
+            <br>
+            <button id="O" onclick="play('O')">O</button>
+            <button id="P" onclick="play('P')">P</button>
+            <button id="Q" onclick="play('Q')">Q</button>
+            <button id="R" onclick="play('R')">R</button>
+            <button id="S" onclick="play('S')">S</button>
+            <button id="T" onclick="play('T')">T</button>
+            <button id="U" onclick="play('U')">U</button>
+            <button id="V" onclick="play('V')">V</button>
+            <button id="W" onclick="play('W')">W</button>
+            <button id="X" onclick="play('X')">X</button>
+            <button id="Y" onclick="play('Y')">Y</button>
+            <button id="Z" onclick="play('Z')">Z</button>
+        </div>
+
+        <!--STICK MAN-->
+        <div class="man">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6RZjc8UWKc5j1tzdEk8rsrwjYZvzktQQssKy88YRbGSrLXB365P6Z8YA6Z-eKDOc2tNI:https://www.homeandlearn.co.uk/extras/draw-stick-figures/png/stick-man-arms-straight.png&usqp=CAU" alt="stick-man"> 
+        </div>
+
+        <!--WORD-->
+        <div class="word">
+
+            <a onclick="gameSetUp()">
+                <h1 id="THEWORD"> Click me to start the game! </h1>
+            </a>
+            
+        </div>
+
+        <!--SPOTS LEFT & FAILS LEFT-->
+        <div class="SF">
+            <h2 id="sp">Spots left:</h2>
+            <h2 id="fl">Fails left:</h2>
+        </div>
+
+    </body>
+
+</html>

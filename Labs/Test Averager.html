@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--On my honor as a student, I have neither given nor received any unauthorized aid on this assignment.-->
+
+<head>
+
+    <!--Page title-->
+    <title>Lab10 AM</title>
+    
+    <!--JS-->
+    <script>
+        
+        //Take 3 test grades and find avrage and return avrages scores letter grade
+
+        const grades = {  
+            A:[90,100],
+            B:[80,90],
+            C:[70,80],
+            D:[64,70],
+            F:[0,64],
+          };
+
+        const reducer = (previousValue, currentValue) => previousValue + currentValue;
+
+        const scores = [];
+        let avg = 0;
+
+        for(let i = 0; i < 3; i++){
+            scores.push(parseInt(prompt("Enter score " + (i+1).toString())));
+        }
+
+        avg = scores.reduce(reducer) / scores.length;
+        
+        for(const [key, value] of Object.entries(grades)){
+            if (avg > value[0] && avg < value[1]){
+                 alert("Your letter grade based on your average grade of " + avg + " is " + key)
+            }
+        }
+
+    </script>
+
+</head>
+
+<body>
+</body>
