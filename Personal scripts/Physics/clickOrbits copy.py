@@ -1,30 +1,35 @@
+from pygame.locals import *
 import pygame
 from pygame import image
 import pymunk
 import numpy as np
-import math
 import random
 import time
 import threading
 
 #Start pygame
 pygame.init()
+pygame.font.init()
 
-#VARS
-
-#Make display
+#CONST's
 HEIGHT = 600
-WITDH = 1000
-display = pygame.display.set_mode((WITDH,HEIGHT))
-
-#SET FPS
-FPS = 25
+WITDH = 1200
+FPS = 25 #SET FPS
 SIM_SPACE = 200
 SIZE = 1  
 AMT = 20
 COLIS = False
 MIN = 30
+GRAVITY_CONST = 1 # Change to 6.67e-11 to use real-world values.
 
+#Make display
+display = pygame.display.set_mode((WITDH,HEIGHT))
+
+#Fonts
+smallfont = pygame.font.SysFont('Comic Sans MS',20)
+bigfont = pygame.font.SysFont('Comic Sans MS',30)
+
+#vars
 justSel = False
 auto = False
 selected = "r"
@@ -32,6 +37,8 @@ planets = []
 trail = []
 traillen = 100
 clock = pygame.time.Clock()
+UIcolor = (128,128,128)
+BUTTONcolor = (255,255,0)
 
 #our pymunk simulation "world" or space
 space = pymunk.Space()
@@ -45,7 +52,7 @@ def convert_cords(point):
 def gforce(p1,p2):
     try:
         # Calculate the gravitational force exerted on p1 by p2.
-        G = 1 # Change to 6.67e-11 to use real-world values.
+        G = GRAVITY_CONST # Change to 6.67e-11 to use real-world values.
         # Calculate distance vector between p1 and p2.
         r_vec = p1.body.position-p2.body.position
         # Calculate magnitude of distance vector.
@@ -63,6 +70,9 @@ def gforce(p1,p2):
 
 def collide(arbiter,space,data):
     pass
+
+def button_size(point):
+    return[(1030,(point*50),30,20),(1030+50,(point*50)-5,30,20)] 
 
 #CLASS'S
 class Ball(): 
@@ -102,10 +112,10 @@ class Ball():
         #show the circle
         if self.coltype != 2:
             x,y = convert_cords(self.body.position)
-            pygame.draw.circle(display,(255,255,255),(x,y), SIZE+(self.shape.mass*0.1))
+            pygame.draw.circle(display,(255,0,0),(x,y), SIZE+(self.shape.mass*0.1))
         else:
             x,y = convert_cords(self.body.position)
-            pygame.draw.circle(display,(255,255,255),(x,y), SIZE+(self.shape.mass*0.1))
+            pygame.draw.circle(display,(255,0,0),(x,y), SIZE+(self.shape.mass*0.1))
 
     def breakUp(self, arbiter,space,data):
         global planets
@@ -208,8 +218,8 @@ class Trail():
     def destory(self):
         trail.remove(self)
 
-
-sunbg = pygame.image.load("sunbg.png").convert_alpha()
+#PLANTET OPTION UI
+sunbg = pygame.image.load("sunbg.png").convert_alpha() 
 smbg = pygame.image.load("sunmovebg.png").convert_alpha()
 cmbg = pygame.image.load("cusmove.png").convert_alpha()
 rbg = pygame.image.load("rbbg.png").convert_alpha()
@@ -219,6 +229,15 @@ smButton = Button("sm",10,60,smbg,0.5)
 cmButton = Button("cm",10,110,cmbg,0.5)
 rButton = Button("r",10,160,rbg,0.5)
 arButton = Button("ar",10,210,arbg,0.5)
+
+#SIDE BAR UI
+pygame.draw.rect(display, UIcolor,pygame.Rect(990, 0, WITDH, HEIGHT))
+#Gravity toggel
+pygame.draw.rect(display,BUTTONcolor,pygame.Rect(button_size(0)[0]))
+gravity_text = smallfont.render('Gravity', False, (0, 0, 0))
+#Pause toggel
+pygame.draw.rect(display,BUTTONcolor,pygame.Rect(button_size(1)[0]))
+pause_text = smallfont.render('Pause', False, (0, 0, 0))
 
 #GAME FUNCTION
 def game():
@@ -268,7 +287,7 @@ def game():
         if len(planets) < MIN and auto:
             planets.append(Ball(len(planets)+1,random.randint(100,WITDH-100),random.randint(100,HEIGHT-100), (random.uniform(-10,10),random.uniform(-10,10)), random.randint(10,50),1))
 
-        display.fill((0,0,0))#draw white background
+        display.fill((0,0,0))#draw black background
 
         for ball in planets:
             if ball.sun_or_ball != "Sun":
@@ -289,57 +308,57 @@ def game():
                                 planet.tag -= 1
                         #print("removed:", planet1, "it was as pos:", planet1.body.position, "li is now", planets)
                         break
-                    elif planet1.body.position[0]-planet2.body.position[0] > -10 and planet1.body.position[0]-planet2.body.position[0] < 10 and planet1.body.position[1]-planet2.body.position[1] < 10 and planet1.body.position[1]-planet2.body.position[1] > -10:
+                    # elif planet1.body.position[0]-planet2.body.position[0] > -10 and planet1.body.position[0]-planet2.body.position[0] < 10 and planet1.body.position[1]-planet2.body.position[1] < 10 and planet1.body.position[1]-planet2.body.position[1] > -10:
                         
-                        if planet1.sun_or_ball == "Ball":
-                            #print(planet1.sun_or_ball, planet2.sun_or_ball)
-                            #find higher mass planet
-                            if planet1.body.mass > planet2.body.mass and planet1.sun_or_ball != "frag":
-                                #remove plant 2 and add force to plant1
+                    #     if planet1.sun_or_ball == "Ball":
+                    #         #print(planet1.sun_or_ball, planet2.sun_or_ball)
+                    #         #find higher mass planet
+                    #         if planet1.body.mass > planet2.body.mass and planet1.sun_or_ball != "frag":
+                    #             #remove plant 2 and add force to plant1
                                 
-                                p2mass = planet2.body.mass
-                                p2pos = convert_cords(planet2.body.position)
-                                force = gforce(planet1, planet2)
-                                force2 = gforce(planet2,planet1)
-                                planets.remove(planet2)
-                                planet1.body.velocity += (force[0]*5, force[1]*5)
-                                #create 2 fragments each 1/3 of planet2 mass
-                                planets.append(Ball(len(planets),p2pos[0],p2pos[1]+50, (force2[0],force2[1]) ,p2mass/3, random.randint(10,50), "frag"))
-                                planets.append(Ball(len(planets),p2pos[0],p2pos[1]-50, (force2[0],force2[1]) ,p2mass/3, random.randint(10,50), "frag"))
-                                planets.append(Ball(len(planets),p2pos[0]+50,p2pos[1], (force2[0],force2[1]) ,p2mass/3, random.randint(10,50), "frag"))
+                    #             p2mass = planet2.body.mass
+                    #             p2pos = convert_cords(planet2.body.position)
+                    #             force = gforce(planet1, planet2)
+                    #             force2 = gforce(planet2,planet1)
+                    #             planets.remove(planet2)
+                    #             planet1.body.velocity += (force[0]*5, force[1]*5)
+                    #             #create 2 fragments each 1/3 of planet2 mass
+                    #             planets.append(Ball(len(planets),p2pos[0],p2pos[1]+50, (force2[0],force2[1]) ,p2mass/3, random.randint(10,50), "frag"))
+                    #             planets.append(Ball(len(planets),p2pos[0],p2pos[1]-50, (force2[0],force2[1]) ,p2mass/3, random.randint(10,50), "frag"))
+                    #             planets.append(Ball(len(planets),p2pos[0]+50,p2pos[1], (force2[0],force2[1]) ,p2mass/3, random.randint(10,50), "frag"))
                                
-                            elif planet2.sun_or_ball != "frag":
-                                #remove plant 1 and add force to plant2
+                    #         elif planet2.sun_or_ball != "frag":
+                    #             #remove plant 1 and add force to plant2
                                 
-                                p1mass = planet2.body.mass
-                                p1pos = convert_cords(planet2.body.position)
-                                force = gforce(planet1, planet2)
-                                force2 = gforce(planet2, planet1)
-                                planets.remove(planet1)
-                                planet1.body.velocity += (force[0]*5, force[1]*5)
-                                #create 2 fragments each 1/3 of planet1 mass
-                                #,tag,x,y, vel, mass, coltype,sun_or_ball="Ball", type=""
-                                planets.append(Ball(len(planets),p1pos[0],p1pos[1]+50, (force2[0],force2[1]) ,p1mass/3, random.randint(10,50), "frag"))
-                                planets.append(Ball(len(planets),p1pos[0],p1pos[1]-50, (force2[0],force2[1]) ,p1mass/3, random.randint(10,50), "frag"))
-                                planets.append(Ball(len(planets),p1pos[0]+50,p1pos[1], (force2[0],force2[1]) ,p1mass/3, random.randint(10,50), "frag"))
+                    #             p1mass = planet2.body.mass
+                    #             p1pos = convert_cords(planet2.body.position)
+                    #             force = gforce(planet1, planet2)
+                    #             force2 = gforce(planet2, planet1)
+                    #             planets.remove(planet1)
+                    #             planet1.body.velocity += (force[0]*5, force[1]*5)
+                    #             #create 2 fragments each 1/3 of planet1 mass
+                    #             #,tag,x,y, vel, mass, coltype,sun_or_ball="Ball", type=""
+                    #             planets.append(Ball(len(planets),p1pos[0],p1pos[1]+50, (force2[0],force2[1]) ,p1mass/3, random.randint(10,50), "frag"))
+                    #             planets.append(Ball(len(planets),p1pos[0],p1pos[1]-50, (force2[0],force2[1]) ,p1mass/3, random.randint(10,50), "frag"))
+                    #             planets.append(Ball(len(planets),p1pos[0]+50,p1pos[1], (force2[0],force2[1]) ,p1mass/3, random.randint(10,50), "frag"))
                         
-                        elif planet1.sun_or_ball == "frag":
-                            t = planet1.tag
-                            planets.remove(planet1)
-                            for planet in planets:
-                                if planet.tag > t:
-                                    planet.tag -= 1
-                        elif planet2.sun_or_ball == "frag":
-                            t = planet2.tag
-                            planets.remove(planet2)
-                            for planet in planets:
-                                if planet.tag > t:
-                                    planet.tag -= 1
+                    #     elif planet1.sun_or_ball == "frag":
+                    #         t = planet1.tag
+                    #         planets.remove(planet1)
+                    #         for planet in planets:
+                    #             if planet.tag > t:
+                    #                 planet.tag -= 1
+                    #     elif planet2.sun_or_ball == "frag":
+                    #         t = planet2.tag
+                    #         planets.remove(planet2)
+                    #         for planet in planets:
+                    #             if planet.tag > t:
+                    #                 planet.tag -= 1
                             
 
                                 
 
-                        #print(planet1.body.position[0]-planet2.body.position[0],planet1.body.position[1]-planet2.body.position[1])
+                    #     #print(planet1.body.position[0]-planet2.body.position[0],planet1.body.position[1]-planet2.body.position[1])
                         #planets.remove(planet2)
                     #else:
                         #print(planet1.body.position[1])
@@ -357,6 +376,14 @@ def game():
         arButton.draw()
         for b in trail:
             b.draw()
+        pygame.draw.rect(display, UIcolor,pygame.Rect(1000, 0, WITDH, HEIGHT))
+        #Gravity toggel
+        pygame.draw.rect(display,BUTTONcolor,pygame.Rect(button_size(1)[0]))
+        display.blit(gravity_text,button_size(1)[1])
+        #Pause toggel
+        pygame.draw.rect(display,BUTTONcolor,pygame.Rect(button_size(2)[0]))
+        display.blit(pause_text,button_size(2)[1])
+
 
         #Update display
         pygame.display.update()
