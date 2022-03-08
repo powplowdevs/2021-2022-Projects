@@ -36,6 +36,7 @@ selected = "r"
 planets = []
 trail = []
 traillen = 100
+gravity
 clock = pygame.time.Clock()
 UIcolor = (128,128,128)
 BUTTONcolor = (255,255,0)
@@ -210,10 +211,10 @@ class Trail():
         #show the circle
         if self.coltype != 2:
             x,y = convert_cords(self.body.position)
-            pygame.draw.circle(display,(255,255,255),(x,y), SIZE+(self.shape.mass*0.1))
+            pygame.draw.circle(display,(255,0,0),(x,y), SIZE+(self.shape.mass*0.1))
         else:
             x,y = convert_cords(self.body.position)
-            pygame.draw.circle(display,(255,255,255),(x,y), SIZE+(self.shape.mass*0.1))
+            pygame.draw.circle(display,(255,0,0),(x,y), SIZE+(self.shape.mass*0.1))
 
     def destory(self):
         trail.remove(self)
@@ -224,6 +225,7 @@ smbg = pygame.image.load("sunmovebg.png").convert_alpha()
 cmbg = pygame.image.load("cusmove.png").convert_alpha()
 rbg = pygame.image.load("rbbg.png").convert_alpha()
 arbg = pygame.image.load("arbbg.png").convert_alpha()
+sbbg = pygame.image.load("button.png").convert_alpha()
 sunButton = Button("s",10,10,sunbg,0.5)
 smButton = Button("sm",10,60,smbg,0.5)
 cmButton = Button("cm",10,110,cmbg,0.5)
@@ -233,10 +235,10 @@ arButton = Button("ar",10,210,arbg,0.5)
 #SIDE BAR UI
 pygame.draw.rect(display, UIcolor,pygame.Rect(990, 0, WITDH, HEIGHT))
 #Gravity toggel
-pygame.draw.rect(display,BUTTONcolor,pygame.Rect(button_size(0)[0]))
+gravButton = Button("gt",1020,45,sbbg,0.5)
 gravity_text = smallfont.render('Gravity', False, (0, 0, 0))
 #Pause toggel
-pygame.draw.rect(display,BUTTONcolor,pygame.Rect(button_size(1)[0]))
+pauseButton = Button("pt",1020,95,sbbg,0.5)
 pause_text = smallfont.render('Pause', False, (0, 0, 0))
 
 #GAME FUNCTION
@@ -280,7 +282,8 @@ def game():
                     planets.append(Ball(len(planets)+1,pos[0],pos[1], (sx,sy),mass,len(planets)+3))
                 if selected == "ar":
                     [planets.append(Ball(i+len(planets)+1,random.randint(100,WITDH-100),random.randint(100,HEIGHT-100), (random.uniform(-10,10),random.uniform(-10,10)), random.randint(10,50),1)) for i in range(AMT)]
-                    
+                if selected == "":
+                    #grav stuff
                 elif justSel == True:
                     justSel = False
 
@@ -377,11 +380,11 @@ def game():
         for b in trail:
             b.draw()
         pygame.draw.rect(display, UIcolor,pygame.Rect(1000, 0, WITDH, HEIGHT))
+        gravButton.draw()
+        pauseButton.draw()
         #Gravity toggel
-        pygame.draw.rect(display,BUTTONcolor,pygame.Rect(button_size(1)[0]))
         display.blit(gravity_text,button_size(1)[1])
         #Pause toggel
-        pygame.draw.rect(display,BUTTONcolor,pygame.Rect(button_size(2)[0]))
         display.blit(pause_text,button_size(2)[1])
 
 

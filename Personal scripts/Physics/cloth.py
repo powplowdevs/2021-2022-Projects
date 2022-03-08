@@ -1,3 +1,4 @@
+from numpy import mat
 import pygame
 import pymunk
 from pymunk.body import Body
@@ -16,11 +17,11 @@ FPS = 50
 clock = pygame.time.Clock()
 
 #vars
-matrix_x = 5
-matrix_y = 4
+matrix_x = 4
+matrix_y = 5
 buffer_sizeX = 50
 buffer_sizeY = 50
-start = (20,(buffer_sizeY*matrix_x)+20)
+start = (20,(buffer_sizeY*matrix_y)+20)
 balls = []
 strings = []
 SIZE = 8
@@ -89,32 +90,56 @@ class String():
 def game():
     x,y = convert_cords(start)#(300,600))
     index = 0
+    indexx = 0
+    indexy = 0
 
-    for i in range(matrix_x):
+    for i in range(matrix_y):
         y += buffer_sizeY
         x = start[0]
-        for j in range(matrix_y):
+        for j in range(matrix_x):
             #if ((len(balls) + 1)/matrix_x) == matrix_x or (len(balls)/matrix_x) == matrix_x-1:
-            if i == (matrix_x-1) and j == 0 or i == (matrix_x-1) and j == matrix_x-1:
-            #if i == 0 and j == 0 or i == 0 and j == matrix_x-1:
+            #if i == (matrix_x-1) and j == 0 or i == (matrix_x-1) and j == matrix_x-1:
+            if i == matrix_y-1 and j == 0 or i == matrix_y-1 and j == matrix_x-1:
                 balls.append(Ball(x,y,(0,0),(SIZE),"s"))
             else:
                 balls.append(Ball(x,y,(0,0),(SIZE)))
             x += buffer_sizeX
     
     for ball in balls:
+
         try:
-            if index+1 != matrix_x and ".0" not in str((index+1)/matrix_x):
+            if indexx != matrix_x-1:
                 strings.append(String(ball.body, balls[index+1].body))
-                #print(f"ball{index} to ball{index+1} :: value_add {index+1} value_defult {index} :: div_val {((index+1)/matrix_x)}")
-        except:
-            pass
-        try:
-            strings.append(String(ball.body, balls[index+matrix_x].body))
         except:
             pass
 
+        try:
+            if indexy != matrix_y-1:
+                strings.append(String(ball.body, balls[index+matrix_x].body))
+        except:
+            pass
+    
+        # try:
+        #     strings.append(String(ball.body, balls[index+matrix_x].body))
+        # except:
+        #     pass
+
+        # try:
+        #     if index+1 != matrix_x and ".0" not in str((index+1)/matrix_x):
+        #         strings.append(String(ball.body, balls[index+1].body))
+        #         #print(f"ball{index} to ball{index+1} :: value_add {index+1} value_defult {index} :: div_val {((index+1)/matrix_x)}")
+        # except:
+        #     pass
+        # try:
+        #     strings.append(String(ball.body, balls[index+matrix_x].body))
+        # except:
+        #     pass
+
         index += 1
+        indexx += 1
+        if indexx == matrix_x:
+            indexx = 0
+            indexy += 1
         
     while True:
         #check to see if user wants to exit
