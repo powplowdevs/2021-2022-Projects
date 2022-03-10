@@ -5,9 +5,6 @@ BORDER = "0px solid black"
 SPEED = 100
 BOARD_SIZE = [100,100]
 
-//start and reset button
-//self collision
-
 game_board = document.getElementById('game-board')
 
 //create player
@@ -15,27 +12,64 @@ class Snake {
     constructor(x,y) {
       this.x = x;
       this.y = y;
-      this.len = 10
+      this.len = 3
     }
 }
 
-const snake = new Snake(BOARD_SIZE[0]/2,BOARD_SIZE[1]/2)
+let snake = new Snake(BOARD_SIZE[0]/2,BOARD_SIZE[1]/2)
 let x = BOARD_SIZE[0]/2
 let y = BOARD_SIZE[1]/2
-direction = "right"
-playing = true
-used_boxes = []
-max_appels = 1
-spotx = 0
-spoty = 0
+let direction = "right"
+let playing = true
+let used_boxes = []
+let max_appels = 1
+let spotx = 0
+let spoty = 0
+
+function restart(){
+    playing = false
+
+    direction = "right"
+    used_boxes = []
+    spotx = 0
+    spoty = 0
+    x = BOARD_SIZE[0]/2
+    y = BOARD_SIZE[1]/2
+    snake.len = 3
+    snake.x = BOARD_SIZE[0]/2
+    snake.y = BOARD_SIZE[1]/2
+    xl = BOARD_SIZE[0]
+    yl = BOARD_SIZE[1]
+    xg=0
+    yg=0
+    SPEED = 100
+
+    for (let index = 0; index < yl; index++) {
+        for (let index = 0; index < xl; index++) {
+            let element = document.getElementById("box" + xg.toString() + "x" + yg.toString() + "y")
+            element.style.background = BG_COLOR
+            element.style.border = BORDER
+            xg += 1
+        }
+        xg = 0
+        yg += 1
+    }
+
+    make_appels()
+    playing = true
+    main()
+
+}
+
 
 function make_appels(){
     for (let index = 0; index < max_appels; index++) {
-        spotx = Math.floor(Math.random() * 99)
-        spoty = Math.floor(Math.random() * 99)
+        spotx = Math.floor(Math.random() * BOARD_SIZE[0]-1)
+        spoty = Math.floor(Math.random() * BOARD_SIZE[1]-1)
         document.getElementById("box" + spotx.toString() + "x" + spoty.toString() + "y").style.backgroundColor = "red";
     }
 }
+
 function create_gird(){
     xl = BOARD_SIZE[0]
     yl = BOARD_SIZE[1]
@@ -187,5 +221,4 @@ async function main(){
 }
 
 create_gird(BOARD_SIZE)
-main()
 
