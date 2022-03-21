@@ -1,5 +1,4 @@
 #Imports for finding urls
-import tkinter
 import urllib
 import json
 import urllib.request
@@ -8,7 +7,7 @@ import urllib.request
 import tkinter as tk
 from tkinter import *
 import json, requests
-from tkinter.messagebox import showinfo
+from tkinter.messagebox import showinfo, showwarning
 
 #Imports to scrape video download, thumbnail, title
 from pytube import *
@@ -19,9 +18,6 @@ from PIL import ImageTk
 import os
 from pytube.helpers import install_proxy
 import ast
-import io
-import time
-import threading
 
 #VARS
 video_links = []
@@ -29,6 +25,7 @@ index = 0
 last_title = ""
 proxy_use = False
 saved_ids = {}
+API_KEY = ""
 
 #PROXY
 servers = {
@@ -79,7 +76,7 @@ def get_all_video_in_channel(channel_id):
     video_links = []
 
     #OUR API KEY
-    api_key = "AIzaSyCiFrCrscrkjb-3r8s1dK8oVACZFqjd3Rk"
+    api_key = API_KEY
 
     base_video_url = 'https://www.youtube.com/watch?v='
     base_search_url = 'https://www.googleapis.com/youtube/v3/search?'
@@ -146,10 +143,16 @@ def delete_video():
     os.remove(last_title.replace(".", "") + ".mp4")
 
 def submit_buffer(name, com, cid):
-    global index 
+    global index, API_KEY
     
-    index = 0
-    add_videos(name, com, cid)
+    if com == "none":
+        if API_KEY == "":
+            showwarning("API KEY INVALID","Your API key is empty, make sure you have submit your key. For more help reference the HOW_TO_RUN.txt file in the folder you downloaded")
+        else:
+            index = 0
+            add_videos(name, com, cid)
+    else:
+        API_KEY = cid
 
 def add_videos(name, com, cid):
     global main, cthumbnail, index, video_links, last_title, status, saved_ids
@@ -187,14 +190,14 @@ def add_videos(name, com, cid):
     
 #SET UP UI
 app = tk.Tk()
-app.geometry("750x500")
+app.geometry("750x550")
 app.configure(bg="lightblue")
 
 #UI
 #--------------------MAIN UI--------------------
 
 vid_title = StringVar()
-vid_title.set('Please enter the channle of of your youtuber below...')
+vid_title.set('Please enter the channel ID of of your youtuber below...')
 
 vidLabel = tk.Label(app, textvariable=vid_title, bg="lightblue", font=("Airl", 15))
 vidLabel.place(relx=0,rely=0)
@@ -210,6 +213,13 @@ main.create_image(0,0, anchor=NW, image=cthumbnail)
 
 Submit = tk.Button(app, width=14, text="Submit ID", command= lambda *args: submit_buffer(ytName, "none", ytName.get()))
 Submit.place(relx=0.6,rely=0.94)
+
+keyName = tk.Entry(app, width=70)
+keyName.place(relx=.01,rely=0.82)
+
+Submitkey = tk.Button(app, width=14, text="Submit KEY", command= lambda *args: submit_buffer(keyName, "KEY", keyName.get()))
+Submitkey.place(relx=0.6,rely=0.81)
+
 
 #--------------------MAIN UI--------------------
 

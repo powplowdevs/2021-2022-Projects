@@ -25,6 +25,7 @@ let used_boxes = []
 let max_appels = 1
 let spotx = 0
 let spoty = 0
+let score = 0
 
 function restart(){
     playing = false
@@ -162,6 +163,8 @@ function draw(){
 
         if(x == spotx && y == spoty){
             snake.len += 1
+            score += 1
+            document.getElementById("score").innerHTML = ("Score: " + score)
             make_appels()
         }
        

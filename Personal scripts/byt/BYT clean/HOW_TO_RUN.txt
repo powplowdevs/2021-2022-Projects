@@ -1,0 +1,40 @@
+Welcome to the BYT youtube video downloader, This file will go over how to get started using the script
+
+TO RUN SCRIPT RUN Brows_yt.exe
+
+Step one API KEY:
+In order to use the script a youtube API Key is necessary. If you don't already have one that's fine though, it's free and easy to get one. 
+
+---HOW TO GET API KEY---
+helpful guide: https://blog.hubspot.com/website/how-to-get-youtube-api-key
+
+1.Log in to Google Developers Console. (or make an account)
+https://console.cloud.google.com/
+2.Create a new project.
+3.On the new project dashboard, click Explore & Enable APIs.
+4.In the library, navigate to YouTube Data API v3 under YouTube APIs.
+5.Enable the API.
+6.Create a credential.
+
+After step 6 a screen will appear with the API key. Copy the key and paste it into the first long input box
+then hit Submit KEY. After that the hardest part is done. NOTE: the key won't be saved by the script though that functionality may be added later so make sure you save your key or bookmark the site you got it from (Google Developers Console)
+
+---HOW TO DOWNLOAD YT VIDEOS---
+Now that you have your API key you can start downloading videos. To start enter the youtube ID of the youtuber
+you want to download videos from. To find the YouTube ID of the channel just follow these steps
+
+Get any youtubers channel ID:
+1. open any browser
+2. head to https://youtube.com
+3. search for your youtuber
+4. click any video made by them
+5. when the video loads hit their name located to the side of their profile picture under the video
+6. when there channel loads in the search bar there will be a link. if the link looks neat for example "https://www.youtube.com/user/PewDiePie" That means you didnt go from a video to the channel and instead directly to the channel. 
+insted the link should look messy for example "https://www.youtube.com/channel/UC-lHJZR3Gqxm24_Vd_AJ5Yw" this link has pewdiepies channel ID. 
+7. to get the id out of this link just copy the letters after "/channel/" so in this case "UC-lHJZR3Gqxm24_Vd_AJ5Yw"
+8. take that string you copied "UC-lHJZR3Gqxm24_Vd_AJ5Yw" and paste it in the script then hit "Submit ID"
+
+If everything was done correctly then the youtuber's last video will pop up on screen. use the next and last buttons to
+navigate through their channels videos and the download button to download the video. Once downloaded just open the .mp4 file
+and enjoy!
+

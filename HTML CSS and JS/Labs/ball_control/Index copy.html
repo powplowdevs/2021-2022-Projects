@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Ball control</title>
+    <style>
+        body{
+            background-color: rebeccapurple;
+        }
+        #canvas{
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="canvas" width="400" height="400"></canvas>
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+
+    <script>
+        let $canvas = $("#canvas")
+        let ctx = $canvas[0].getContext('2d')
+        ctx.fillStyle = 'red';
+
+        const w = 400
+        const h= 400
+
+
+        class Ball{
+
+            constructor(x, y, xv, yv, ) {
+                this.x = x;
+                this.y = y;
+
+                this.xv = xv;
+                this.yv = yv;
+              
+            }
+
+            editVel(code){
+                if (code == "ArrowUp"){
+                    this.yb = -3
+                } 
+                else if (code == "ArrowDown"){
+                    this.yv = +3
+                }
+                else if (code == "ArrowLeft"){
+                    this.xv = -3
+                }
+
+                else if (code == "ArrowRight"){
+                    this.xv = +3
+                 }
+
+
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 5, 0, 2*Math.PI);
+                ctx.fill();
+
+            }
+
+            move(){
+                this.x += this.xv
+                this.y += this.yv
+            }
+            
+            checkCol(){
+
+                if (this.x<0 || this.x>390){
+                    this.xv = -this.xv
+
+                }
+                if (this.y<0 || this.y>390){
+                    this.yv = -this.yv
+                }
+
+            }
+
+        }
+
+    
+        ball = new Ball(10,5,3,11)
+
+
+        async function main(){
+              
+            while (true){
+                $("body").keydown(function(event) {
+                    ball.editVel(event.code)
+                });
+            
+
+                ctx.clearRect(0, 0, w, h);
+
+                ctx.fillStyle = "red";
+                ball.move()
+                ball.draw()
+                ball.checkCol()
+                await new Promise(r => setTimeout(r, 10));
+            } 
+
+        }
+        
+
+        main()
+
+    </script>
+</body>
